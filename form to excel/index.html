@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+    <h1 class="text-3xl font-bold mb-6 text-center">Registration Form</h1>
+    <form id="registrationForm"  onsubmit="return validateForm()">
+
+      <div class="mb-4">
+        <label for="firstName" class="block text-sm font-medium text-gray-700">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required
+               class="mt-1 block w-full rounded-md border-gray-300
+                      shadow-sm focus:border-indigo-500 focus:ring
+                      focus:ring-indigo-500 focus:ring-opacity-50">
+      </div>
+
+      <div class="mb-4">
+        <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                 focus:border-indigo-500 focus:ring focus:ring-indigo-500
+                 focus:ring-opacity-50">
+      </div>
+
+      <div class="mb-4">
+        <label for="middleName" class="block text-sm font-medium text-gray-700">Middle Name:</label>
+        <input type="text" id="middleName" name="middleName"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                 focus:border-indigo-500 focus:ring focus:ring-indigo-500
+                 focus:ring-opacity-50">
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+        <input type="email" id="email" name="email" required
+          class="mt-1 block w-full rounded-md border-gray-300
+                 shadow-sm focus:border-indigo-500 focus:ring
+                 focus:ring-indigo-500 focus:ring-opacity-50">
+      </div>
+
+      <div class="mb-4 relative">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+        <input type="password" id="password" name="password"
+               required class="mt-1 block w-full rounded-md border-gray-300
+               shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500
+               focus:ring-opacity-50 pr-10">
+
+        <div class="absolute right-2 bottom-0 ">
+          <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()" class="mr-2">
+          <label for="showPassword" class="text-sm text-gray-500 cursor-pointer">Show Password</label>
+        </div>
+      </div>
+
+      <span id="passwordError" class="error block text-sm text-red-500 mb-4"></span>
+      <span id="passwordSuccess" class="success block text-sm text-green-500 mb-4"></span>
+
+      <button type="submit" class="w-full bg-indigo-500 text-white
+                    py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none
+                    focus:ring focus:ring-indigo-500 focus:ring-opacity-50">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const middleName = document.getElementById('middleName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const passwordInput = document.getElementById('password');
+    const passwordError = document.getElementById('passwordError');
+    const passwordSuccess = document.getElementById('passwordSuccess');
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+
+    passwordInput.addEventListener('input', () => {
+      const password = passwordInput.value.trim();
+
+      if (!passwordRegex.test(password)) {
+        passwordError.textContent = "Password should be alphanumeric, start with a capital letter, contain a special character, and be at least 8 characters long.";
+        passwordSuccess.textContent = ""; 
+      } else {
+        passwordError.textContent = "";
+        passwordSuccess.textContent = "Password success!";
+      }
+    });
+
+    function togglePasswordVisibility() {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+
+    function validateForm() {
+      const password = passwordInput.value.trim();
+
+      if (!passwordRegex.test(password)) {
+        passwordError.textContent = "Password should be alphanumeric, start with a capital letter, contain a special character, and be at least 8 characters long.";
+        passwordSuccess.textContent = ""; 
+        return false;
+      } else {
+        passwordError.textContent = "";
+        passwordSuccess.textContent = "Password success!";
+        return true;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
