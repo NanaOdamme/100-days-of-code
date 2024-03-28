@@ -83,14 +83,19 @@ def movies_page(request):
         # If no search query provided, fetch all movies
         movies_data = Movie.objects.all()
 
-    
+    new_movies = []
     for movie_data in movies_data:
-            Movie.objects.create(
+        # Check if the movie already exists in the database
+        existing_movie = Movie.objects.filter(title=movie_data.title).first()
+        if not existing_movie:
+            # If the movie doesn't exist, create a new Movie object
+            new_movie = Movie(
                 title=movie_data.title,
                 overview=movie_data.overview,
                 release_date=movie_data.release_date,
                 poster_path=f"https://image.tmdb.org/t/p/w500/{movie_data.poster_path}"
             )
+            new_movies.append(new_movie)
     
     
     return render(request, 'movies.html', {'movies': movies_data, 'page': int(page)})
