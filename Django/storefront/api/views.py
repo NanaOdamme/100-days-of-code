@@ -12,3 +12,4 @@ def getData(request):
         {'name': 'Puzzle Man', 'year': 2011, 'link': 'https://www.crazygames.com/', 'image': '/static/images/puzzle_man.jpg'},
     ]
     return Response(games)
+

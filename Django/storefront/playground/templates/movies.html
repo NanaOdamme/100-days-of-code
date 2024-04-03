@@ -1,3 +1,4 @@
+<!-- templates/playground/movies.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,37 +76,38 @@
         </div>
     </nav>
     <div class="container-md">
-        <form class="form-inline" id="searchForm" method="GET" action="{% url 'movies_page' %}">
-            <input class="form-control mr-sm-2" type="search" id="searchInput" name="search" placeholder="Search" aria-label="Search" value="{{ search_query }}">
+        <form class="form-inline" id="searchForm">
+            <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
     <div class="contain mt-4">
         <h1 class="mb-4">Latest Movies</h1>
         <div class="row" id="movieList">
-            {% for movie in movies %}y 7km
+            
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}" style="max-width: 100%; max-height: 500px;">
+                    <img src="{{ movie.poster_path }}" class="img-fluid" alt="movie title">
                     <div class="card-body">
-                        <h5 class="card-title">{{ movie.title }}</h5>
+                        <h5 class="card-title">Movie Title</h5>
                         <p class="card-text">
-                            <span class="truncated-text">{{ movie.overview | slice:":100" }}</span>
-                            <span class="read-more-content" style="display:none;">{{ movie.overview }}</span>
+                            <span class="truncated-text">Overview | slice:":100"</span>
+                            <span class="read-more-content" style="display:none;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos obcaecati quas, minima adipisci iure consequuntur inventore harum illum magnam distinctio placeat incidunt in alias consectetur quo sequi omnis deleniti repellat perferendis? Accusamus optio distinctio recusandae laboriosam exercitationem, veritatis iusto voluptate facilis quos soluta qui adipisci, ipsam tempora dicta animi velit alias libero corrupti. Dolor, dignissimos. Voluptates, similique at! Molestias, nulla!
+                            </span>
                             <a href="#" class="read-more">Read More</a>
                         </p>
-                        <p class="card-text"><small class="text-muted">Release Date: {{ movie.release_date }}</small></p>
+                        <p class="card-text"><small class="text-muted">Release Date: </small></p>
                         <a href="{{ movie.download_link }}" class="download-button">Download</a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+            
         </div>
-        {% if page == 1 %}
+       
         <div class="text-center mt-4">
             <button class="btn btn-outline-light" id="showMore">Show More</button>
         </div>
-        {% endif %}
+        
     </div>
    
     
