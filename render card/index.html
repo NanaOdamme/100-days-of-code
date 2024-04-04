@@ -13,8 +13,8 @@
     body {
         background-color: #ff5a5a7d;
         font-family: Arial, sans-serif;
-        padding: 150px;
-        position: relative; /* Added to create stacking context for absolute positioning */
+        position: relative;
+        padding-top: 50px;
       }
   
       /* Background image with overlay */
@@ -38,7 +38,6 @@
       padding: 30px;
       border-radius: 10px;
       margin: 20px auto;
-      max-width: 900px;
       justify-content: end;
     }
 
@@ -85,7 +84,9 @@
     .list-group-item:hover {
       background-color: #fa77a0b9;
     }
-
+    h2{
+      font-size: 16px;
+    }
     /* Modal styling */
     .modal-content {
       background-color: #ff9e9e;
@@ -214,6 +215,7 @@
           editedTodo: {
             title: '',
             index: null,
+            // Added status property
             status: 'ongoing', // Added status property
           },
         };
