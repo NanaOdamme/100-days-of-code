@@ -1,0 +1,76 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    background-color: #121212; /* Dark background */
+    color: #fff; /* White text */
+    font-family: 'Segoe UI', sans-serif; /* Futuristic font */
+    padding: 20px;
+}
+
+/* Header styles */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #00bfff; /* Cyan color */
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Input styles */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #00bfff; /* Cyan border */
+    border-radius: 5px;
+    background-color: transparent; /* Transparent background */
+    color: #fff; /* White text */
+    outline: none; /* Remove default input outline */
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00bfff; /* Cyan background */
+    color: #fff; /* White text */
+    cursor: pointer;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #0080ff; /* Lighter cyan on hover */
+}
+
+/* List styles */
+ul {
+    list-style-type: none;
+}
+
+/* List item styles */
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #333; /* Dark gray background */
+    border-radius: 5px;
+}
+
+/* Link styles */
+a {
+    color: #00bfff; /* Cyan color */
+    text-decoration: none;
+}
+
+/* Link hover effect */
+a:hover {
+    text-decoration: underline;
+}
