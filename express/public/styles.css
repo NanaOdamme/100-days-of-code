@@ -8,7 +8,7 @@
 /* Body styles */
 body {
     background-color: #121212; /* Dark background */
-    color: #fff; /* White text */
+    color: #000000; /* White text */
     font-family: 'Segoe UI', sans-serif; /* Futuristic font */
     padding: 20px;
 }
@@ -17,7 +17,7 @@ body {
 h1 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #00bfff; /* Cyan color */
+    color: #ffa963; /* Cyan color */
 }
 
 /* Form styles */
@@ -29,10 +29,10 @@ h1 {
 input[type="text"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #00bfff; /* Cyan border */
+    border: 1px solid #ffbc81; /* Cyan border */
     border-radius: 5px;
     background-color: transparent; /* Transparent background */
-    color: #fff; /* White text */
+    color: #ffffff; /* White text */
     outline: none; /* Remove default input outline */
 }
 
@@ -41,14 +41,14 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #00bfff; /* Cyan background */
+    background-color: #057a0c; /* Cyan background */
     color: #fff; /* White text */
     cursor: pointer;
 }
 
 /* Button hover effect */
 button:hover {
-    background-color: #0080ff; /* Lighter cyan on hover */
+    background-color: #042c09; /* Lighter cyan on hover */
 }
 
 /* List styles */
@@ -58,18 +58,27 @@ ul {
 
 /* List item styles */
 li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #333; /* Dark gray background */
+    margin-bottom: 5px;
+    padding: 15px;
+    background-color: #fff6f6; 
     border-radius: 5px;
 }
-
+.btn-group{
+    margin-bottom: 20px;
+    float: right;
+   
+}
 /* Link styles */
-a {
-    color: #00bfff; /* Cyan color */
+.btn-primary
+{
+    color: #0f69ef;
+    text-decoration: none;
+    
+}
+.btn-danger{
+    color: #a90011;
     text-decoration: none;
 }
-
 /* Link hover effect */
 a:hover {
     text-decoration: underline;
