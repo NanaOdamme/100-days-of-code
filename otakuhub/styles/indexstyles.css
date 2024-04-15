@@ -49,7 +49,7 @@ h1 span{
     justify-content: flex-end;
 }
 .animelist {
-    overflow: hidden;
+    
     position: relative;
     background-image: url(/otakuhub/images/about1.png);
     height: 105vh;
@@ -159,7 +159,7 @@ display: block;
 
 .anime-info{
 background-image: url(/otakuhub/images/more.png);
-height: 100vh;
+height: 110vh;
 border-radius: 10px;
 border: 2px solid #ff5e00;
 }
@@ -175,13 +175,14 @@ height: 280px;
 
 }
 .anime-info img{
-height: 700px;
-width: 500px;
+height: 600px;
+width: 400px;
 background-position: 50% 50%;
 background-size: cover;
 border-radius: 10px;
-margin-top: 70px;
+margin-top: 80px;
 margin-left: 50px;
+margin-bottom: 70px;
 display: block;
 animation: flipAnimation 5s linear infinite;
 transform-style: preserve-3d;
@@ -271,7 +272,7 @@ transform: rotateY(180deg);
     border: 2px solid #ff5e00;
     border-radius: 10px;
     padding: 50px 100px;
-    height: 110vh;
+    height: 120vh;
  }
   .manga .col{
     border: 3px solid #ff5e00;
@@ -303,7 +304,7 @@ transform: rotateY(180deg);
     padding: 50px 0;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    
     z-index: 1;
   }
 
