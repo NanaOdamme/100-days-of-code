@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Slider</title>
+<style>
+  .slider {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .cards {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .card {
+    width: 100%;
+    min-width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    margin-right: 20px;
+  }
+
+  .btn-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: 1px solid #333;
+    background-color: #fff;
+  }
+  .card.current {
+    transform: scale(1.2);
+  }
+</style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="cards">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+    <div class="card">Card 5</div>
+    <div class="card">Card 6</div>
+    
+  </div>
+</div>
+
+<div class="btn-container">
+  <button class="btn" id="prevBtn">Previous</button>
+  <button class="btn" id="nextBtn">Next</button>
+</div>
+
+<script>
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cardsContainer = document.querySelector('.cards');
+  const cards = document.querySelectorAll('.card');
+
+
+  let currentIndex = 0;
+  const cardWidth = document.querySelector('.card').offsetWidth;
+  const numCards = document.querySelectorAll('.card').length;
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + numCards) % numCards;
+    updateSliderPosition();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % numCards;
+    updateSliderPosition();
+  });
+
+  function updateSliderPosition() {
+    cards.forEach((card, index) => {
+      if (index === currentIndex) {
+        card.classList.add('current');
+      } else {
+        card.classList.remove('current');
+      }
+    });
+    const newPosition = -currentIndex * cardWidth;
+    cardsContainer.style.transform = `translateX(${newPosition}px)`;
+  }
+ 
+</script>
+
+</body>
+</html>

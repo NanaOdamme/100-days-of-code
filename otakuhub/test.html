@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow</title>
+<style>
+    .animelist {
+        overflow: hidden;
+        position: relative;
+        background-image: url(images/about1.png);
+        height: 100vh;
+        padding-top: 50px;
+    }
+
+    .contain {
+        width: 1000px;
+        height: 600px;
+        background: #fee9009e;
+        box-shadow: 0 30px 50px #2e2c2c;
+        margin: 60px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s ease;
+    }
+
+    .contain .slide {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .item {
+        display: inline-block;
+        width: 280px; /* Reduced width */
+        height: 500px;
+        margin: 0 20px; /* Reduced space between items */
+        border-radius: 10px;
+        box-shadow: 0 10px 20px #2e2c2c9d;
+        background-position: 50% 50%;
+        background-size: cover;
+        transition: transform 0.5s;
+        text-align: center;
+        position: relative;
+        border: 2px solid aliceblue;
+        color: aliceblue;
+    }
+    .item .name{
+        font-size: 2rem;
+    }
+
+    /* Updated styles for .btn-container */
+    .btn-container {
+        display: flex;
+        justify-content: center; 
+        margin-top: 20px; 
+    }
+
+    /* Additional style for the buttons */
+    .btn {
+        margin: 0 10px; /* Added space between buttons */
+    }
+
+    .item:hover .content {
+        transform: translateY(-50%);
+    }
+
+    .content {
+        text-align: left;
+        transition: transform 0.5s ease;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        transform: translateY(0); /* Initial position */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #ff7b00;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    /* Add default style to hide .des */
+.des {
+    display: none;
+}
+
+/* Show .des when item is hovered */
+.item:hover .des {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<section class="animelist">
+    <div class="container-md">
+    <div class="contain" id="contain">
+        <div class="slide">
+            <div class="item" style="background-image: url(images/Naruto\ [2002-2007].jpg);">
+                <div class="content">
+                    <div class="name">Naruto</div>
+                    <div class="des"><p>A powerful fox known as the Nine-Tails attacks Konoha, the hidden leaf village in the Land of Fire, one of the Five Great Shinobi Countries in the Ninja World...</p></div>
+                    <button>Watch</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/kamui.jpg);">
+                <div class="content">
+                    <div class="name">Ninja Kamui</div>
+                    <div class="des"><p>After escaping his clan and going into hiding in rural America, former ninja Higan, living under the alias of Joe Logan is ambushed by assassins...</p></div>
+                    <button>Watch</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/bu.jpg);">
+                <div class="content">
+                    <div class="name">Bucchigiri?!</div>
+                    <div class="des"><p>After Arajin Tomoshibi returns to his hometown and reunites with his childhood friend...</p></div>
+                    <button>Watch</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/SOLO\ LEVELING\ WALLPAPER.jpg);">
+                <div class="content">
+                    <div class="name">Solo Leveling</div>
+                    <div class="des"><p>In a world where hunters — human warriors who possess supernatural abilities — must battle... </p></div>
+                    <button>Watch</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/Straw\ hats\ ONe\ piece\ _\ One\ piece\ cartoon\,\ One\ piece\ theme\,\ One\ peice\ anime.jpg);">
+                <div class="content">
+                    <div class="name">One Piece</div>
+                    <div class="des"><p>The world of One Piece is populated by humans and other races such as dwarves (more akin to faeries in size), giants, merfolk, fish-men, long-limbed tribes, long-necked people known as the Snakeneck Tribe, and animal people (known as "Minks")...</p></div>
+                    <button>Watch</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/Demon\ Slayer\ 2024\ movie\ poster.jpg);">
+                <div class="content">
+                    <div class="name">Demon Slayer</div>
+                    <div class="des"><p>In Taishō era Japan, a secret organization known as the "Demon Slayer Corps" has waged a war against demons for centuries. Demons are former humans who possess supernatural abilities such as enhanced strength, rapid regeneration, and unique powers referred to as "Blood Demon Arts"...</p></div>
+                    <button>Watch</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="btn-container">
+        <button class="btn" id="prevBtn">Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+      </div>
+    </div>
+    </section>
+
+
+    <script>
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slide = document.querySelector('.slide');
+        const items = document.querySelectorAll('.item');
+        const contain = document.getElementById('contain'); // Add ID to .contain div
+    
+        let currentIndex = 0;
+        const itemWidth = document.querySelector('.item').offsetWidth;
+        const numItems = items.length;
+    
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + numItems) % numItems;
+            updateSliderPosition();
+        });
+    
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % numItems;
+            updateSliderPosition();
+        });
+    
+        function updateSliderPosition() {
+            const centerIndex = Math.floor(numItems / 2);
+            const newPosition = -((currentIndex - centerIndex) * itemWidth);
+    
+            // Update size of current index item
+            items.forEach((item, index) => {
+                const scaleFactor = index === currentIndex ? 1.2 : 1; // Increase size for current index
+                item.style.transform = `scale(${scaleFactor})`;
+            });
+    
+            slide.style.transform = `translateX(${newPosition}px)`;
+    
+            // Update background image of .contain based on current item
+            const currentImage = items[currentIndex].style.backgroundImage;
+            contain.style.backgroundImage = currentImage;
+        }
+    
+        // Initial positioning
+        updateSliderPosition();
+    </script>
+    
+    
+</body>
+</html>

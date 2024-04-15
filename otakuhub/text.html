@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel with Circle Text</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS for glass effect and circle text -->
+  <style>
+    .glass-card {
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      max-width: 400px;
+    }
+
+    .circle-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #007bff; /* Your desired background color */
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="glass-card">
+                <h1>Card Title</h1>
+                <p>Card Description goes here.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <img src="https://via.placeholder.com/400" class="d-block w-100" alt="...">
+              <!-- Circle Text -->
+              <div class="circle-text">.rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add more carousel items here as needed -->
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

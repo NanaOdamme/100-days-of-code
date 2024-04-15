@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OtakuHub</title>
+    <!-- Bootstrap CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/indexstyles.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+ 
+
+    <section class=" hero img-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Otaku <span>Hub</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse navbar-custom" id="navbarNav">
+                    <ul class="navbar-nav ms-auto"> <!-- Using ms-auto to move the nav links to the right -->
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-5" href="#">About</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-5" href="#animelist">Anime List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-5" href="#manga">Manga</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-5" href="#">Community</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="hero-section">
+            <h1 class="h1">STREAM YOUR FAVOURITE <span>ANIME</span> <br> IN HIGH QUALITY. <br> FREE <span>MANGA</span>
+                AT YOUR DISPOSAL</h1>
+            <button class="btn btn-get-started">Get Started</button>
+        </div>
+    </section>
+    
+    <section class="animelist mt-5 mb-5" id="animelist">
+        <div class="container-md">
+        <div class="contain" id="contain">
+            <div class="slide">
+                <div class="item" style="background-image: url(images/Naruto\ [2002-2007].jpg);">
+                    <div class="content">
+                        <div class="name">Naruto</div>
+                        <div class="des"><p>A powerful fox known as the Nine-Tails attacks Konoha, the hidden leaf village in the Land of Fire, one of the Five Great Shinobi Countries in the Ninja World...</p></div>
+                        <button>Watch</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/kamui.jpg);">
+                    <div class="content">
+                        <div class="name">Ninja Kamui</div>
+                        <div class="des"><p>After escaping his clan and going into hiding in rural America, former ninja Higan, living under the alias of Joe Logan is ambushed by assassins...</p></div>
+                        <button>Watch</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/bu.jpg);">
+                    <div class="content">
+                        <div class="name">Bucchigiri?!</div>
+                        <div class="des"><p>After Arajin Tomoshibi returns to his hometown and reunites with his childhood friend...</p></div>
+                        <button>Watch</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/SOLO\ LEVELING\ WALLPAPER.jpg);">
+                    <div class="content">
+                        <div class="name">Solo Leveling</div>
+                        <div class="des"><p>In a world where hunters — human warriors who possess supernatural abilities — must battle... </p></div>
+                        <button>Watch</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/Straw\ hats\ ONe\ piece\ _\ One\ piece\ cartoon\,\ One\ piece\ theme\,\ One\ peice\ anime.jpg);">
+                    <div class="content">
+                        <div class="name">One Piece</div>
+                        <div class="des"><p>The world of One Piece is populated by humans and other races such as dwarves (more akin to faeries in size), giants, merfolk, fish-men, long-limbed tribes, long-necked people known as the Snakeneck Tribe, and animal people (known as "Minks")...</p></div>
+                        <button>Watch</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/Demon\ Slayer\ 2024\ movie\ poster.jpg);">
+                    <div class="content">
+                        <div class="name">Demon Slayer</div>
+                        <div class="des"><p>In Taishō era Japan, a secret organization known as the "Demon Slayer Corps" has waged a war against demons for centuries. Demons are former humans who possess supernatural abilities such as enhanced strength, rapid regeneration, and unique powers referred to as "Blood Demon Arts"...</p></div>
+                        <button>Watch</button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="btn-container pb-2">
+            <button class="btn  mb-5" id="prevBtn">Previous</button>
+            <button class="btn  mb-5" id="nextBtn">Next</button>
+          </div>
+        </div>
+        </section>
+        
+        <section class="anime-info mb-5">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-md-6">
+                          <div class="glass-card">
+                            <h1>Ninja Kamui</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet fuga ullam expedita nemo quo illum vel nihil. Molestiae, facere? Ipsum non accusamus placeat cum nobis dolor odit inventore, odio consequatur?</p>
+                            <button>Visit</button>
+                            <h1 class="rate">7.52</h1>
+                        </div>
+                          
+                        </div>
+                        <div class="col-md-6 image-container">
+                          <img src="images/kamui.jpg" class="d-block image-flip" alt="...">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-md-6">
+                          <div class="glass-card">
+                            <h1>Naruto</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet fuga ullam expedita nemo quo illum vel nihil. Molestiae, facere? Ipsum non accusamus placeat cum nobis dolor odit inventore, odio consequatur?</p>
+                            <button>Visit</button>
+                            <h1 class="rate">8.99</h1>
+                        </div>
+                          
+                        </div>
+                        <div class="col-md-6 image-container">
+                          <img src="images/Naruto [2002-2007].jpg" class="d-block image-flip" alt="...">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Add more carousel items here as needed -->
+                </div>
+                <button class=" carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="icons carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class=" visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="icons carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            
+              
+        </section>
+    
+        <section class="visit mb-5">
+            <div class="container-md text-center">
+              <h1 class="text-center mb-5">Join our Community</h1>
+              <div class="visit-icons">
+                <i class="bi bi-telegram">Telegram</i>
+                <i class="bi bi-discord">Discord</i>
+                <i class="bi bi-whatsapp">Instagram</i>
+              </div>
+            </div>
+          </section>
+
+          <section class="manga mb-5" id="manga">
+            <div class="panel">
+                <div class="row">
+                  <!-- Card 1 -->
+                  <div class=" col text-center">
+                      <img src="images/solo leveling.jpg" class=" mt-4" alt="...">
+                        <h5 class="manga-title text-center mt-2">Solo Leveling</h5>
+                      </div>
+
+                      <div class=" col text-center">
+                        <img src="images/Demon Slayer 2024 movie poster.jpg" class=" mt-4" alt="...">
+                          <h5 class="manga-title text-center mt-2">Demon Slayer</h5>
+                        </div>
+                    
+                        <div class=" col text-center">
+                          <img src="images/12 Best Books for Learning to Draw Manga _ Kyuhoshi.jpg" class=" mt-4" alt="...">
+                            <h5 class="manga-title text-center mt-2">Kyuhoshi</h5>
+                          </div>
+                        
+                          <div class=" col text-center">
+                            <img src="images/7th Time Loop_ The Villainess Enjoys A Carefree Life Married To Her Worst Enemy (manga) Vol_ 1 par Touko Amekawa, Couverture souple Couverture souple.jpg" class=" mt-4" alt="...">
+                              <h5 class="manga-title text-center mt-2">7th Time Loop_ The Villainess...</h5>
+                            </div>  
+                  
+              </div>
+              <div class="row">
+                <!-- Card 1 -->
+                <div class=" col text-center">
+                    <img src="images/manga2.jpg" class=" mt-4" alt="...">
+                      <h5 class="manga-title text-center mt-2">Naruto</h5>
+                    </div>
+
+                    <div class=" col text-center">
+                      <img src="images/manga4.jpg" class=" mt-4" alt="...">
+                        <h5 class="manga-title text-center mt-2">ERGO PROXY</h5>
+                      </div>
+                  
+                      <div class=" col text-center">
+                        <img src="images/manga5.jpg" class=" mt-4" alt="...">
+                          <h5 class="manga-title text-center mt-2">One Piece</h5>
+                        </div>
+                      
+                        <div class=" col text-center">
+                          <img src="images/SPY X FAMILY _Season 2 is only two months away! 🥳.jpg" class=" mt-4" alt="...">
+                            <h5 class="manga-title text-center mt-2">SPY X FAMILY</h5>
+                          </div>  
+                
+            </div>
+             <!--
+            <div class="row">
+             
+              <div class=" col text-center">
+                  <img src="images/DQLSYJHK Anime Jjk Poster Manga Cover Wall Art Canvas Print Cartoon Posters for Bedroom Living Room Wall Decor (12x18inch-Unframed,D).jpg" class="img-fluid mt-4" alt="...">
+                    <h5 class="manga-title text-center mt-2">Jujutsu Kaisen</h5>
+                  </div>
+
+                  <div class=" col text-center">
+                    <img src="images/Anime Poster Blue Period Kawaii Anime GirlCanvas Painting Wall Art Poster for Bedroom Living Room.jpg" class="img-fluid mt-4" alt="...">
+                      <h5 class="manga-title text-center mt-2">Blue Period</h5>
+                    </div>
+                
+                    <div class=" col text-center">
+                      <img src="images/POSTER STOP ONLINE Hunter X Hunter - Manga_Anime TV Show Poster (Key Art - Running) (Size 24 x 36).jpg" class="img-fluid mt-4" alt="...">
+                        <h5 class="manga-title text-center mt-2">Hunter X Hunter</h5>
+                      </div>
+                    
+                      <div class=" col text-center">
+                        <img src="images/❀𝑷𝒊𝒏𝒕𝒆𝒓𝒆𝒔𝒕_ 𝒆𝒔𝒖𝒎𝒂𝒊𝒓𝒖𝒄.jpg" class="img-fluid mt-4" alt="...">
+                          <h5 class="manga-title text-center mt-2">My Hero Academia</h5>
+                        </div>  
+              
+          </div> -->
+          <!--
+          <div class="row">
+            
+            <div class=" col text-center">
+                <img src="images/attack on titan by kellie.jpg" class=" mt-4" alt="...">
+                  <h5 class="manga-title text-center mt-2">Attack On Titan</h5>
+                </div>
+
+                <div class=" col text-center">
+                  <img src="images/Haikyuu.jpg" class=" mt-4" alt="...">
+                    <h5 class="manga-title text-center mt-2">Haikuu</h5>
+                  </div>
+              
+                  <div class=" col text-center">
+                    <img src="images/The Promised Neverland Poster by Cindy.jpg" class=" mt-4" alt="...">
+                      <h5 class="manga-title text-center mt-2">The Promised Neverland</h5>
+                    </div>
+                  
+                    <div class=" col text-center">
+                      <img src="images/TIE LER A3 Japanese Classic Anime Poster Retro Kraft Paper Wall Stickers Home Bar Cafe Decor Gift Art Wall Painting 42X28_5cm W34.jpg" class="img-fluid mt-4" alt="...">
+                        <h5 class="manga-title text-center mt-2">Black Glover</h5>
+                      </div>  
+            
+        </div>-->
+        <div class="col-md-12 mb-5">
+          <div class="see-more-container">
+            <button class="see-more">See More</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Connect with Us</h4>
+              <div class="footer-icons">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+              </div>
+              <p>&copy; 2024 OTAKUHUB. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- Bootstrap JS via CDN (required for Bootstrap functionality like dropdowns, toggles, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <!-- Bootstrap JS and dependencies -->
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slide = document.querySelector('.slide');
+        const items = document.querySelectorAll('.item');
+        const contain = document.getElementById('contain'); 
+        
+        let currentIndex = 0;
+        const itemWidth = document.querySelector('.item').offsetWidth;
+        const numItems = items.length;
+        
+        // Function to duplicate all previous slides and append them to the end
+        function duplicatePreviousSlides() {
+            const slidesToDuplicate = Array.from(items).slice(0, currentIndex);
+            slidesToDuplicate.forEach(slide => {
+                const cloneSlide = slide.cloneNode(true);
+                slide.appendChild(cloneSlide);
+            });
+        }
+        
+        // Call duplicatePreviousSlides() to duplicate previous slides
+        duplicatePreviousSlides();
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + numItems) % numItems;
+            updateSliderPosition();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % numItems;
+            updateSliderPosition();
+        });
+        
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                updateSliderPosition();
+            });
+        });
+        
+        function updateSliderPosition() {
+            const centerIndex = Math.floor(numItems / 2);
+            const newPosition = -((currentIndex - centerIndex) * itemWidth);
+        
+            items.forEach((item, index) => {
+                const scaleFactor = index === currentIndex ? 1.2 : 1;
+                item.style.transform = `scale(${scaleFactor})`;
+            });
+        
+            slide.style.transform = `translateX(${newPosition}px)`;
+        
+            const currentImage = items[currentIndex].style.backgroundImage;
+            contain.style.backgroundImage = currentImage;
+        }
+        
+        updateSliderPosition(); // Initial positioning
+        
+    </script>
+    
+    
+    
+    
+    
+</body>
+</html>
