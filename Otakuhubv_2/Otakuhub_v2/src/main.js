@@ -1,11 +1,26 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
 
-const app = createApp(App)
+// Import and register your components here if needed
+import Navbar from './components/Navbar.vue';
+import HeroSection from './components/HeroSection.vue';
+import AnimeList from './components/AnimeList.vue';
+import Carousel from './components/Carousel.vue';
+import VisitSection from './components/VisitSection.vue';
+import MangaSection from './components/MangaSection.vue';
+import Footer from './components/Footer.vue';
 
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+// Register components globally if needed
+app.component('Navbar', Navbar);
+app.component('HeroSection', HeroSection);
+app.component('AnimeList', AnimeList);
+app.component('Carousel', Carousel);
+app.component('VisitSection', VisitSection);
+app.component('MangaSection', MangaSection);
+app.component('Footer', Footer);
+
+// Mount the app to the #app element in your HTML file
+app.mount('#app');
