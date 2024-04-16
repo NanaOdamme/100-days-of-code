@@ -1,6 +1,8 @@
 <template>
-  <section class="animelist mt-5 mb-5">
+  <section class="animelist mt-5 mb-5" id="animelist">
+    
     <div class="container-md">
+      <h1>Anime</h1>
       <div class="contain" ref="contain">
         <div class="slide" ref="slide">
           <div v-for="(item, index) in animeList" :key="index" class="item" :style="{ backgroundImage: 'url(' + item.image + ')' }">

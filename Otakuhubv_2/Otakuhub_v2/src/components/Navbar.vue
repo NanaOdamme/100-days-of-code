@@ -25,7 +25,7 @@
               <a class="nav-link mx-lg-5" href="#manga">Manga</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-5" href="#">Community</a>
+              <a class="nav-link mx-lg-5" href="#visit">Community</a>
             </li>
           </ul>
         </div>

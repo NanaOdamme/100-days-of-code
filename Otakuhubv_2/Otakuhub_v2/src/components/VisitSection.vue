@@ -1,5 +1,5 @@
 <template>
-    <section class="visit mb-5">
+    <section class="visit mb-5" id="visit">
       <div class="container-md text-center">
         <h1 class="text-center mb-5">Join our Community</h1>
         <div class="visit-icons">

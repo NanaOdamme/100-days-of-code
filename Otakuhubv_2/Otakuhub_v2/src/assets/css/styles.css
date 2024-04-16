@@ -56,7 +56,7 @@ h1 span{
     
     position: relative;
     background-image: url('/src/assets/images/about1.png');
-    height: 105vh;
+   
     padding-top: 50px;
     border: 2px solid #ff5e00;
     border-radius: 10px;
@@ -275,18 +275,19 @@ transform: rotateY(180deg);
     background-image: url('/src/assets/images//mang-bg.png');
     border: 2px solid #ff5e00;
     border-radius: 10px;
-    padding: 50px 100px;
-    height: 120vh;
+    padding: 10px 50px;
+   
  }
-  .manga .col{
+  .manga .col-sm-2{
     border: 3px solid #ff5e00;
     border-radius: 10px;
-    margin: 2px;
+   
+   
+    
   }
   .manga img{
     border-radius: 10px;
-    height: 300px;
-    width: 300px;
+    
     background-position: 50% 50%;
     background-size: cover;
    
