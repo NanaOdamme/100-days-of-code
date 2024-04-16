@@ -20,7 +20,7 @@
       </div>
       <div>
     <button class="animepage">
-      <router-link to=" /anime " target="_blank">See More</router-link>
+      <router-link to="/anime" target="_blank">See More</router-link>
     </button>
   </div>
     </div>

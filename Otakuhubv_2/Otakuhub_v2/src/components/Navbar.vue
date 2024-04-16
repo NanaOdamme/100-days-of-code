@@ -22,6 +22,9 @@
               <a class="nav-link mx-lg-5" href="#animelist">Anime List</a>
             </li>
             <li class="nav-item">
+            <router-link to="/anime">Anime</router-link>
+          </li>
+            <li class="nav-item">
               <a class="nav-link mx-lg-5" href="#manga">Manga</a>
             </li>
             <li class="nav-item">
