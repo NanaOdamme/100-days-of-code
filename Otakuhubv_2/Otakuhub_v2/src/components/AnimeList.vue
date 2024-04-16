@@ -1,8 +1,6 @@
 <template>
-  <section class="animelist mt-5 mb-5" id="animelist">
-    
+  <section class="animelist mt-5 mb-5">
     <div class="container-md">
-      <h1>Anime</h1>
       <div class="contain" ref="contain">
         <div class="slide" ref="slide">
           <div v-for="(item, index) in animeList" :key="index" class="item" :style="{ backgroundImage: 'url(' + item.image + ')' }">
@@ -12,12 +10,19 @@
               <button @click="watchAnime(item)">Watch</button>
             </div>
           </div>
+       
         </div>
+        
       </div>
       <div class="btn-container pb-2">
         <button class="btn mb-5" @click="prevAnime">Previous</button>
         <button class="btn mb-5" @click="nextAnime">Next</button>
       </div>
+      <div>
+    <button class="animepage">
+      <router-link to=" /anime " target="_blank">See More</router-link>
+    </button>
+  </div>
     </div>
   </section>
 </template>
@@ -69,6 +74,7 @@ export default {
     this.updateSliderPosition();
   },
   methods: {
+   
     duplicatePreviousSlides() {
       const slidesToDuplicate = this.animeList.slice(0, this.currentIndex);
       slidesToDuplicate.forEach(slide => {

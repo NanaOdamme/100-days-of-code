@@ -56,7 +56,7 @@ h1 span{
     
     position: relative;
     background-image: url('/src/assets/images/about1.png');
-   
+    overflow: hidden;
     padding-top: 50px;
     border: 2px solid #ff5e00;
     border-radius: 10px;
@@ -101,6 +101,21 @@ h1 span{
 }
 .item .name{
     font-size: 2rem;
+}
+
+.animepage a{
+  text-decoration: none;
+  color: #fff;
+}
+.animepage{
+  border-radius: 50px;
+  float: right;
+  margin-right: 50px;
+  transition: .4s;
+}
+.animepage:hover{
+  background-color: #762e04;
+  transform: scale(1.2);
 }
 
 /* Updated styles for .btn-container */

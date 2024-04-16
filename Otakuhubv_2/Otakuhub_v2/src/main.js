@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 
 
+
+
 // Import and register your components here if needed
 import Navbar from './components/Navbar.vue';
 import HeroSection from './components/HeroSection.vue';
