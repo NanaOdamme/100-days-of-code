@@ -1,12 +1,12 @@
 <template>
-    <div class="container">
-      <h1 class="text-center mb-5">Otaku<span>Hub</span> - <strong>Anime</strong>Database</h1>
+    <div class="container mt-5 pt-5">
+      <h1 class="text-center mb-5 ">Otaku<span>Hub</span> - <strong>Anime</strong>Database</h1>
       <form class="search-bar mb-5" @submit.prevent="searchAnime">
         <input type="search" class="searchfield"
                placeholder="Search anime..."
                required
                v-model="search_query" />
-        <button type="submit" class="search-btn">Search</button>
+       
       </form>
   
       <main class="mb-5">

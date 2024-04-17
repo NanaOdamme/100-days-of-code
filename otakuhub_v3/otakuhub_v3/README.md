@@ -1,4 +1,4 @@
-# Otakuhub_v2
+# otakuhub_v3
 
 This template should help get you started developing with Vue 3 in Vite.
 

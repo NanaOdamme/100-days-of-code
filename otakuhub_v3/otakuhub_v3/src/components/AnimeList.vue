@@ -1,5 +1,5 @@
 <template>
-  <section class="animelist mt-5 mb-5">
+  <section class="animelist mt-5 mb-5" id="animelist">
     <div class="container-md">
       <div class="contain" ref="contain">
         <div class="slide" ref="slide">
