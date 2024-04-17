@@ -1,0 +1,103 @@
+[
+    {
+      "name": "Attack on Titan: The Final Season",
+      "image": "/src/assets/image/Attack_on_Titan.jpg",
+      "description": "Eren Yeager joins the Scout Regiment to fight the Titans and uncover the truth behind the Walls..."
+    },
+    {
+      "name": "Jujutsu Kaisen 0 Movie",
+      "image": "/src/assets/image/Jujutsu_Kaisen.jpg",
+      "description": "Yuta Okkotsu, a high school student haunted by a curse, joins Tokyo Metropolitan Magic Technical College to learn sorcery and control his powers..."
+    },
+    {
+      "name": "Tokyo Revengers",
+      "image": "/src/assets/image/Tokyo_Revengers.jpg",
+      "description": "Takemichi Hanagaki discovers he can travel back in time to prevent the tragic death of his girlfriend and change the future..."
+    },
+    {
+      "name": "My Hero Academia Season 6",
+      "image": "/src/assets/image/My_Hero_Academia.jpg",
+      "description": "Izuku Midoriya, a quirkless boy, inherits the One For All quirk from All Might and enrolls in U.A. High School to become a hero..."
+    },
+    {
+      "name": "Demon Slayer: Mugen Train",
+      "image": "/src/assets/image/Demonslayer_Mugen_Train.jpg",
+      "description": "Tanjiro Kamado and his friends board the Infinity Train to investigate the disappearances of demon slayers and confront the powerful demon, Enmu..."
+    },
+    {
+      "name": "Black Clover",
+      "image": "/src/assets/image/Black_Clover.jpg",
+      "description": "Asta and Yuno, orphans raised in a church, compete to become the Wizard King in a world where magic is everything..."
+    },
+    {
+      "name": "One Punch Man Season 3",
+      "image": "/src/assets/image/One_Punch_Man.jpg",
+      "description": "Saitama, a hero who can defeat any opponent with a single punch, faces new powerful enemies and navigates the Hero Association rankings..."
+    },
+    {
+      "name": "Dr. Stone: Stone Wars",
+      "image": "/src/assets/image/Dr_Stone.jpg",
+      "description": "Senku Ishigami, a genius scientist, uses science to revive humanity after a mysterious phenomenon turns everyone into stone..."
+    },
+    {
+      "name": "The Rising of the Shield Hero Season 2",
+      "image": "/src/assets/image/Rising_Shield_Hero.jpg",
+      "description": "Naofumi Iwatani, a hero summoned to another world, continues his journey to protect his world from waves of monsters..."
+    },
+    {
+      "name": "AOTU World",
+      "image": "/src/assets/image/AOTU_World.jpg",
+      "description": "Luo Xiaohei, a black cat demon with incredible powers, embarks on adventures in the mysterious AOTU World..."
+    },
+    {
+      "name": "Horimiya",
+      "image": "/src/assets/image/Horimiya.jpg",
+      "description": "Kyouko Hori and Izumi Miyamura, two high school students with hidden sides, form an unlikely friendship and navigate their relationships..."
+    },
+    {
+      "name": "Haikyuu!! To The Top Part 2",
+      "image": "/src/assets/images/Haikyuu.jpg",
+      "description": "Shoyo Hinata, a volleyball player with a short stature, aspires to become a top player and leads his team to nationals..."
+    },
+    {
+      "name": "Beastars Season 2",
+      "image": "/src/assets/image/Beastars.jpg",
+      "description": "In a world of anthropomorphic animals, Legoshi, a timid wolf, tries to navigate his feelings and solve mysteries in his school..."
+    },
+    {
+      "name": "The Promised Neverland Season 2",
+      "image": "/src/assets/image/Promised_Neverland.jpg",
+      "description": "Emma, Ray, and other children at Grace Field House discover the dark secrets of their orphanage and strive for freedom in a dangerous world..."
+    },
+    {
+      "name": "Re:Zero - Starting Life in Another World Season 2 Part 2",
+      "image": "/src/assets/image/Re_Zero.jpg",
+      "description": "Subaru Natsuki, a young man with the ability to return from death, faces new challenges and uncovers mysteries in another world..."
+    },
+    {
+      "name": "Fire Force Season 2",
+      "image": "/src/assets/image/Fire_Force.jpg",
+      "description": "Shinra Kusakabe, a third-generation pyrokinetic, joins Special Fire Force Company 8 to uncover the truth behind spontaneous human combustion..."
+    },
+    {
+      "name": "Attack on Titan Season 4 Part 2",
+      "image": "/src/assets/image/Attack_on_Titan_S4_Part2.jpg",
+      "description": "Eren Yeager and the Survey Corps engage in a final battle against Marley and uncover the secrets of the Titans and the world..."
+    },
+    {
+      "name": "Dorohedoro",
+      "image": "/src/assets/image/Dorohedoro.jpg",
+      "description": "Caiman, a man transformed into a reptilian creature, hunts sorcerers in the Hole to discover his identity and seek revenge..."
+    },
+    {
+      "name": "That Time I Got Reincarnated as a Slime Season 2 Part 2",
+      "image": "/src/assets/image/Slime.jpg",
+      "description": "Rimuru Tempest, a slime monster with unique abilities, continues building his nation and facing new threats in the fantasy world..."
+    },
+    {
+      "name": "The Seven Deadly Sins: Dragon's Judgement",
+      "image": "/src/assets/image/Seven_Deadly_Sins.jpg",
+      "description": "Meliodas and the Seven Deadly Sins confront the Ten Commandments and face their ultimate challenges in a battle for Britannia..."
+    }
+  ]
+  

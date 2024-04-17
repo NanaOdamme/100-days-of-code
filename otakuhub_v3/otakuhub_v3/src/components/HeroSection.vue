@@ -3,7 +3,7 @@
     <header><div class="navbar">
       <ul class="nav-list">
         <li class="nav-item">
-          <a class="nav-link mx-lg-5" href="#animelist">New</a>
+          <a class="nav-link mx-lg-5" href="#animelist">Discover</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-lg-5" href="#manga">Manga</a>
@@ -72,7 +72,6 @@ header{
     align-content: center;
     justify-content: center;
     text-align: center;
-   
     height: 50vh;
     padding: 11px 20px;
   }
@@ -81,6 +80,9 @@ header{
     align-content: center;
   }
   .h1{
+    background-color: rgba(254, 254, 248, 0.662);
+    border-radius: 10px;
+    padding: 10px;
     color: rgb(0, 0, 0);
     font-size: 22px;
     font-weight: 900;

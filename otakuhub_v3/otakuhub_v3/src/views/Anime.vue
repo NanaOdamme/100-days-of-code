@@ -1,4 +1,5 @@
 <template>
+  <div class="main-anime">
     <div class="container mt-5 pt-5">
       <h1 class="text-center mb-5 ">Otaku<span>Hub</span> - <strong>Anime</strong>Database</h1>
       <form class="search-bar mb-5" @submit.prevent="searchAnime">
@@ -20,6 +21,7 @@
         </div>
       </main>
     </div>
+  </div>
   </template>
   
   <script>
@@ -61,6 +63,7 @@
   <style scoped>
   * {
     font-family: 'Fire Sans', sans-serif;
+    
   }
   
   h1 {
@@ -69,11 +72,11 @@
   }
   
   strong {
-    color: #000;
+    color: #ffffff;
   }
   
   h1:hover {
-    color: #000;
+    color: #ffffff;
     font-weight: 500;
   }
   
@@ -85,7 +88,7 @@
   .searchfield {
     appearance: none;
     background: none;
-    border: 1px solid #fba961;
+    border: 1px solid #6d9773;
     border-radius: 5px;
     outline: none;
     padding: 10px;
@@ -105,19 +108,19 @@
   
   .searchfield:focus {
     color: aliceblue;
-    border: 1px solid #ffa065;
+    border: 1px solid #6d9773;
     background-color: #010c20;
   }
   
   .searchfield:valid {
     color: aliceblue;
-    border: 1px solid #ffa065;
+    border: 1px solid #6d9773;
     background-color: #010c20;
   }
   
   a {
     text-decoration: none;
-    color: #ff7d0c;
+    color: #0c3b2e;
   }
   
   .cards {
@@ -133,14 +136,14 @@
   }
   
   h4 {
-    color: #313131;
+    color: #ffffff;
     transition: 0.4s;
   }
   
   h4:hover,
   img:hover {
     transform: scale(1.05);
-    color: #ff7d0c;
+    color: #f3f800;
   }
   </style>
   

@@ -6,7 +6,7 @@
   <main>
   <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Otaku <span>Hub</span></a>
+      <a class="navbar-brand text-white" href="#">Otaku<span>Hub</span></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,7 +16,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <i class="bi bi-list"></i>
       </button>
       <div class="collapse navbar-collapse navbar-custom" id="navbarNav">
         <ul class="navbar-nav ms-auto">
@@ -41,14 +41,19 @@
 
 <style scoped>
 /* Global styles for router-link */
-
+.navbar-toggler{
+  border: none;
+  font-size: 26px;
+  font-weight: 700;
+  color: #bbba52;
+}
 
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* Adjust background color and opacity as needed */
+  background-color: #0c3b2e;
   z-index: 1000; /* Ensure the navbar is above other content */
   display: flex;
   justify-content: center; 
@@ -66,15 +71,15 @@
 }
 
 .nav-link {
-  color: #ff6200;
+  color: #ffba00;
   text-decoration: none;
   font-weight: 500;
-  margin-right: 20px;
+  margin-right: 100px;
   transition: .4s;
 }
 .nav-link:hover{
-  color: #8d3702;
-  transform: scale(1.2);
+  color: #bbba52;
+  transform: scaleY(1.2);
 }
 .hero-section {
   margin-top: 60px; 
