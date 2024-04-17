@@ -36,18 +36,69 @@ export default {
   data() {
     return {
       animeList: animeListData,
-
       currentIndex: 0,
       itemWidth: 0,
+      autoSlideInterval: null, // Interval ID for automatic sliding
+      isMouseOver: false, // Track mouse hover state
+      touchStartX: 0, // Track touch start position
+      touchEndX: 0, // Track touch end position
     };
   },
   mounted() {
     this.itemWidth = this.$el.querySelector('.item').offsetWidth;
     this.duplicatePreviousSlides();
     this.updateSliderPosition();
+    this.startAutoSlide(); // Start automatic sliding
+    this.$el.addEventListener('mouseenter', this.handleMouseEnter);
+    this.$el.addEventListener('mouseleave', this.handleMouseLeave);
+    this.$el.addEventListener('touchstart', this.handleTouchStart);
+    this.$el.addEventListener('touchmove', this.handleTouchMove);
+    this.$el.addEventListener('touchend', this.handleTouchEnd);
+  },
+  beforeDestroy() {
+    this.stopAutoSlide(); // Clean up interval before component destruction
+    this.$el.removeEventListener('mouseenter', this.handleMouseEnter);
+    this.$el.removeEventListener('mouseleave', this.handleMouseLeave);
+    this.$el.removeEventListener('touchstart', this.handleTouchStart);
+    this.$el.removeEventListener('touchmove', this.handleTouchMove);
+    this.$el.removeEventListener('touchend', this.handleTouchEnd);
   },
   methods: {
-   
+    startAutoSlide() {
+      this.autoSlideInterval = setInterval(() => {
+        if (!this.isMouseOver) {
+          this.nextAnime();
+        }
+      }, 3000); // Change the interval time (in milliseconds) as needed
+    },
+    stopAutoSlide() {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
+    },
+    handleMouseEnter() {
+      this.isMouseOver = true;
+    },
+    handleMouseLeave() {
+      this.isMouseOver = false;
+    },
+    handleTouchStart(event) {
+      this.touchStartX = event.touches[0].clientX;
+    },
+    handleTouchMove(event) {
+      this.touchEndX = event.touches[0].clientX;
+    },
+    handleTouchEnd() {
+      const touchDistance = this.touchEndX - this.touchStartX;
+      if (Math.abs(touchDistance) > 50) { // Adjust threshold for swipe sensitivity
+        if (touchDistance > 0) {
+          this.prevAnime(); // Swipe right (move to previous slide)
+        } else {
+          this.nextAnime(); // Swipe left (move to next slide)
+        }
+      }
+      this.touchStartX = 0;
+      this.touchEndX = 0;
+    },
     duplicatePreviousSlides() {
       const slidesToDuplicate = this.animeList.slice(0, this.currentIndex);
       slidesToDuplicate.forEach(slide => {
@@ -85,10 +136,12 @@ export default {
         'current-item': true, // Add this class for the current item
       };
     },
-   
   },
 };
 </script>
+
+
+
 
 <style scoped>
 
