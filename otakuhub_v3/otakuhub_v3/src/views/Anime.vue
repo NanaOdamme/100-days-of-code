@@ -37,7 +37,7 @@ export default {
   methods: {
     async fetchAnimeList() {
       try {
-        const response = await axios.get('https://api.jikan.moe/v4/anime');
+        const response = await axios.get('https://api.jikan.moe/v4/top/anime');
         this.animeList = response.data.data;
         console.log(this.animeList);
       } catch (error) {

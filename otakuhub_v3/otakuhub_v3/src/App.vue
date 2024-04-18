@@ -27,6 +27,9 @@
             <router-link to="/anime" class="nav-link">Anime</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/manga" class="nav-link">Manga</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/about" class="nav-link">About Us</router-link>
           </li>
          

@@ -372,6 +372,7 @@ transform: rotateY(180deg);
     margin-bottom: 0;
   }
 
-  .main-anime{
+  .main-anime,
+  .main-manga{
     background-color: #012017f1;
   }
