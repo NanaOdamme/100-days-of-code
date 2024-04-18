@@ -1,25 +1,40 @@
 <template>
-    <section class="manga mb-5" id="manga">
-      <div class="panel">
-        <div class="row">
-          <!-- Manga cards content here -->
-        </div>
-        <div class="col-md-12 mb-5">
-          <div class="see-more-container">
-            <button class="see-more">See More</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </template>
-  
-  <script>
-  export default {
-    // Add component logic here if needed
-  };
-  </script>
-  
-  <style scoped>
-  /* Add scoped styles here */
-  </style>
-  
+  <div class="anime-genres">
+    <h1>Anime Genres</h1>
+    <ul>
+      <li v-for="genre in animeGenres" :key="genre.mal_id">
+        <strong>{{ genre.name }}</strong>: {{ genre.type }}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      animeGenres: [],
+    };
+  },
+  mounted() {
+    this.fetchAnimeGenres();
+  },
+  methods: {
+    async fetchAnimeGenres() {
+      try {
+        const response = await axios.get('https://api.jikan.moe/v4/genres/anime');
+        this.animeGenres = response.data.data;
+        console.log(this.animeGenres);
+      } catch (error) {
+        console.error('Error fetching anime genres:', error);
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Your component styles here */
+</style>

@@ -1,5 +1,7 @@
 <template>
   <div class="main-anime">
+    
+
     <div class="container mt-5 pt-5">
       <h1 class="text-center mb-5 ">Otaku<span>Hub</span> - <strong>Anime</strong>Database</h1>
       <form class="search-bar mb-5" @submit.prevent="searchAnime">
@@ -8,6 +10,17 @@
                required
                v-model="search_query" />
       </form>
+      <div class="anime-genres">
+        <h1>Genres</h1>
+        <div>
+          <button v-for="(genre, index) in displayedGenres" :key="genre.mal_id" @click="fetchAnimeList(genre)">
+            <strong>{{ genre.name }}</strong>: {{ genre.type }}
+          </button>
+          <button v-if="!showAllGenres" @click="toggleShowAllGenres">Show More</button>
+          <button v-if="showAllGenres" @click="toggleShowAllGenres(false)">Show Less</button>
+        </div>
+      </div>
+
       <main class="mb-5 ">
         <div class="row">
           <div class="col   mb-4 mx-auto" v-for="anime in animeList" :key="anime.mal_id">
@@ -27,14 +40,42 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      animeGenres: [],
       animeList: [],
       search_query: '',
+      showAllGenres: false,
+      genresToShow: 10,
     };
   },
+  computed: {
+    displayedGenres() {
+      return this.animeGenres.slice(0, this.genresToShow);
+    },
+  },
   mounted() {
+    this.fetchAnimeGenres();
     this.fetchAnimeList();
   },
   methods: {
+    async fetchAnimeGenres() {
+      try {
+        const response = await axios.get('https://api.jikan.moe/v4/genres/anime');
+        this.animeGenres = response.data.data;
+        console.log(this.animeGenres);
+      } catch (error) {
+        console.error('Error fetching anime genres:', error);
+      }
+    },
+    async fetchAnimeList(genre) {
+  try {
+    const response = await axios.get(`https://api.jikan.moe/v4/genre/anime/${genre.id}`);
+    this.animeList = response.data.data;
+    console.log('Anime list for selected genre:', this.animeList);
+  } catch (error) {
+    console.error('Error fetching anime list for selected genre:', error);
+  }
+},
+
     async fetchAnimeList() {
       try {
         const response = await axios.get('https://api.jikan.moe/v4/top/anime');
@@ -53,11 +94,37 @@ export default {
         console.error('Error fetching anime list:', error);
       }
     },
+    toggleShowAllGenres(showAll) {
+      this.showAllGenres = showAll;
+      if (this.showAllGenres) {
+        this.genresToShow = this.animeGenres.length;
+      } else {
+        this.genresToShow = 10;
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
+button {
+  margin: 5px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
 * {
   font-family: 'Fire Sans', sans-serif;
 }
