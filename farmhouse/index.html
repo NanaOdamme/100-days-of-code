@@ -4,22 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Navbar</title>
+  <title>Odame's farm</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> 
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body class="bg-gray-100">
-  <nav class="bg-white shadow-lg">
+  <nav class="bg-white shadow-lg m-10">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center py-4">
         <div>
-          <a href="#" class="text-lg font-bold text-gray-800">Logo</a>
+          <a href="#" class="text-lg font-bold text-gray-800"><img src="images/odame-logo.svg" class="w-10" alt="">
+          </a>
         </div>
         <div class="hidden md:flex space-x-4">
           <a href="#" class="text-gray-800 hover:text-gray-600">Home</a>
           <a href="#" class="text-gray-800 hover:text-gray-600">About</a>
           <a href="#" class="text-gray-800 hover:text-gray-600">Services</a>
+          <a href="#" class="text-gray-800 hover:text-gray-600">News</a>
           <a href="#" class="text-gray-800 hover:text-gray-600">Contact</a>
         </div>
         <div class="md:hidden">
@@ -37,47 +40,52 @@
         <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">Home</a>
         <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">About</a>
         <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">Services</a>
+        <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">News</a>
         <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">Contact</a>
       </div>
     </div>
   </nav>
 
-  
-  <div class=" hero py-16 px-4 md:px-0">
+  <section>
+  <div class="hero py-16 px-4 md:px-0">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-      <div class="md:w-1/2">
+      <!-- Image comes first on smaller screens -->
+      <div class="md:w-1/2 mb-4 md:mb-0 order-1 md:order-2">
+        <img src="images/prof.jpg" alt="Odame's Farm" class="w-full rounded-lg shadow-lg">
+      </div>
+      <!-- Text comes first on larger screens -->
+      <div class="md:w-1/2 order-2 md:order-1">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Odame's Farm</h1>
         <p class="text-lg mb-8">
           Odame's Farm is dedicated to providing you with the freshest and highest quality poultry products. 
           Our commitment to sustainable farming practices ensures that every product you receive is not only delicious but also ethically produced. 
           From free-range chickens to organic eggs, we have everything you need for a wholesome and nutritious meal.
         </p>
-        <a href="#" class="bg-white px-6 py-3  text-lg font-semibold hover:bg-opacity-80 transition duration-300">Explore Now</a>
-      </div>
-      <div class="md:w-1/2 mb-4 md:mb-0">
-        <img src="images/prof.jpg" alt="Odame's Farm" class="w-full rounded-lg shadow-lg">
+        <a href="#" class="bg-white px-6 py-3 text-lg font-semibold hover:bg-opacity-80 transition duration-300">Explore Now</a>
       </div>
     </div>
   </div>
+</section>
 
+<section>
   <div class="container mx-auto mb-2 px-2 md:px-0">
     <h3 class="text-2xl font-bold mb-8">Companies That Trust Us</h3>
     <div class="grid grid-cols-7 md:grid-cols-8 gap-2">
         
         <img src="images/logo (1).jpg" alt="Company 1" class="w-20 md:w-24 rounded-lg shadow-lg">
-     
         <img src="images/logo (5).jpg" alt="Company 5" class="w-20 md:w-24 rounded-lg shadow-lg">
         <img src="images/logo (2).jpg" alt="Company 2" class="w-20 md:w-24 rounded-lg shadow-lg">
-      
-      
         <img src="images/logo (3).jpg" alt="Company 3" class="w-20 md:w-24 rounded-lg shadow-lg">
-      
-     
         <img src="images/logo (4).jpg" alt="Company 4" class="w-20 md:w-24 rounded-lg shadow-lg">
-      
-    </div>
+        <img src="images/logo (7).jpg" alt="Company 4" class="w-20 md:w-24 rounded-lg shadow-lg">
+        <img src="images/logo (8).jpg" alt="Company 4" class="w-20 md:w-24 rounded-lg shadow-lg">
+        <img src="images/logo (9).jpg" alt="Company 4" class="w-20 md:w-24 rounded-lg shadow-lg">
+    
+      </div>
   </div>
-  
+</section>
+
+<section>
   <div class=" wellness bg-gray-100 py-16 px-4 md:px-0">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
       <div class="md:w-1/2 grid grid-cols-2 gap-4 mx-8">
@@ -106,22 +114,192 @@
       
     </div>
   </div>
+</section>
 
-
-  <div class="bg-gray-200 py-16 px-4 md:px-0 relative">
-    <div class="container mx-auto">
-      <div class="container mx-auto mt-4">
-        <h3 class="text-2xl font-bold mb-4">Our Farm</h3>
-        <p class="text-lg">Visit our farm and start your business with us. We provide the freshest poultry products and sustainable farming practices.</p>
-      </div>
-      <video id="farm-video" class="w-full rounded-lg shadow-lg" controls poster="path/to/video-thumbnail.jpg">
-        <source src="images/v.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    
+<section>
+  <div class="vid">
+    <video autoplay loop muted plays-line class="background-clip">
+      <source src="images/vid.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+    <h1 class="h1 font-bold">Our Farm</h1>
+            <h3 class="font-bold">"Where every cluck tells a story of wholesome nourishment and sustainable farming."</h3>
+          </div>
   </div>
+</section>
 
+<section>
+  <div class="section5 py-16 px-4 md:px-0">
+    <div class="container  flex flex-col md:flex-row items-center justify-between">
+      <div class="md:w-1/2 mb-4 md:mb-0 mx-8 flex justify-center">
+        <img src="images/img.png" alt="Image" class="imgg">
+      </div>
+      
+      <div class="left md:w-1/2">
+        <p class="p font-bold text-lg mb-2">At Odame's Farm we:</p>
+        <h1 class="text-3xl text-green-900 md:text-4xl font-bold mb-4">Building A Stronger Tomorrow</h1>
+        <p class="text-lg">We deliver eggs to local shops as well as international markets, ensuring quality and freshness reach every corner.</p>
+        <div class="icons flex items-center mb-4">
+          <div class="flex flex-col  mr-10">
+            <i class="bi bi-emoji-smile"></i>
+            <p class="text-lg mt-2">prioritizing <br> Sustainability</p>
+          </div>
+          <div class="flex flex-col ">
+            <i class="bi bi-check2-circle"></i>
+            <p class="text-lg mt-2">Quality Assurance <br> top-notch quality <br>in egg production </p>
+          </div>
+        </div>
+        <div class="flex justify-start mt-6">
+          <a href="#" class="bg-green-700 hover:bg-green-600 text-white px-6 py-3 text-lg font-semibold transition duration-300">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-section py-8 flex justify-center">
+  <div class="container">
+    <h2 class="text-center text-2xl font-bold mb-6">Shop Our Farm</h2>
+    <div class=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
+      <!-- Product Cards -->
+      <!-- Card 1 -->
+      <div class="card flex flex-col items-center">
+        <!-- Image -->
+        <img src="images/eggs.jpg" alt="Product 1" class="w-40 h-40 rounded-lg shadow-lg mb-4">
+        <!-- Details -->
+        <div class="card-details text-center">
+          <h3 class="text-lg font-bold mb-2">Product Name</h3>
+          <p class="mb-2">Size: 250 grams</p>
+          <p class="mb-2">Rate: $10</p>
+          <p class="mb-4">Price: $8</p>
+        </div>
+      </div>
+      <!-- Product Card 2 -->
+      <div class="card flex flex-col items-center">
+        <img src="images/manure.jpg" alt="Product 2" class="w-40 h-40 rounded-lg shadow-lg mb-4">
+        <div class="card-details text-center">
+          <h3 class="text-lg font-bold mb-2">Product Name</h3>
+          <p class="mb-2">Size: 500 grams</p>
+          <p class="mb-2">Rate: $15</p>
+          <p class="mb-4">Price: $12</p>
+        </div>
+      </div>
+      <!-- Add more product cards as needed -->
+      <div class="card flex flex-col items-center">
+        <img src="images/egg.jpg" alt="Product 2" class="w-40 h-40 rounded-lg shadow-lg mb-4">
+        <div class="card-details text-center">
+          <h3 class="text-lg font-bold mb-2">Product Name</h3>
+          <p class="mb-2">Size: 500 grams</p>
+          <p class="mb-2">Rate: $15</p>
+          <p class="mb-4">Price: $12</p>
+        </div>
+      </div>
+
+      <div class="card flex flex-col items-center">
+        <img src="images/hen.jpg" alt="Product 2" class="w-40 h-40 rounded-lg shadow-lg mb-4">
+        <div class="card-details text-center">
+          <h3 class="text-lg font-bold mb-2">Product Name</h3>
+          <p class="mb-2">Size: 500 grams</p>
+          <p class="mb-2">Rate: $15</p>
+          <p class="mb-4">Price: $12</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-6">
+      <a href="#" class="bg-green-700 hover:bg-green-600 text-white px-6 py-3 text-lg font-semibold transition duration-300">All Products</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section> 
+  <div class="section6 py-16 px-4 md:px-0">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <!-- Image on the left -->
+      <div class="md:w-1/2 mx-10 mb-4 md:mb-0">
+        <img src="images/call.jpg" alt="Left Image" class="w-full rounded-lg shadow-lg">
+      </div>
+      <!-- Table on the right -->
+      
+      <div class="md:w-1/2">
+        <p>Contact Us</p>
+        <h1 class="text-3xl text-green-900 md:text-4xl font-bold mb-4">Contact Odame's Farm <br> For More Inquiries</h1>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th class="text-start">Working Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-start">Mon-Friday</td>
+              <td class="text-start">08:30AM - 9:00PM</td>
+            </tr>
+            <tr>
+              <td class="text-start">Saturday</td>
+              <td class="text-start">10:00AM - 9:00PM</td>
+            </tr>
+            <tr>
+              <td class="text-start">Sunday</td>
+              <td class="text-start">1:00PM - 9:00PM</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex justify-left mt-6">
+          <a href="#" class="bg-green-700 hover:bg-green-600 text-white px-6 py-3 text-lg font-semibold transition duration-300">Contact Us</a>
+        </div>
+      </div>
+      </div>
+     <div class="container mx-auto">
+  <form class="mt-6">
+    <h1 class="text-3xl mx-2 text-green-900 md:text-4xl font-bold mb-4">  Schedule An Appointment</h1>
+    <div class="items-center flex">
+      <input type="email" placeholder="Enter Email" class="border border-gray-300 rounded-lg px-4 mx-2 py-2 w-full" required>
+      <button type="submit" class="bg-green-700 hover:bg-green-600 text-white px-10 py-2 rounded-lg transition duration-300 flex justify-center items-center">Request</button>
+    </div>
+  </form>
+</div>
+  </div>
+</section> 
+
+
+  <section class="quote">
+    <div class="image-with-text relative">
+      <img src="images/farm.jpg" alt="Image" class="imgg1 w-full">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-container text-center">
+          <i class="bi bi-chat-quote"></i>
+          <p class="p mb-4 text-white text-center">From Our Owner</p>
+          <h4 class="text-white text-center font-bold">"Our farm thrives on happy hens and ethical farming. We care for each bird with dedication, ensuring they're healthy and content every day. Our focus on sustainability means our eggs are not only high-quality but also produced responsibly. We love what we do, and it shows in the care we give to our feathered friends. Come join us in enjoying the goodness of farm-fresh produce, grown with love and respect for nature."</h4>
+          <p class="mt-2 text-white text-center">Owner: Mr. Ebenezer Odame Anti</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="mt-5 bg-green-900 text-white py-8">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+      <!-- Footer Logo -->
+      <div class="mb-4 md:mb-0">
+        <img src="images/odame-logo.svg" alt="Footer Logo" class="logo w-32">
+      </div>
+      <!-- Footer Navigation Links -->
+      <nav class="flex flex-wrap items-center justify-center md:justify-end">
+        <a href="#" class="text-white hover:text-gray-400 px-4 py-2">Home</a>
+        <a href="#" class="text-white hover:text-gray-400 px-4 py-2">About Us</a>
+        <a href="#" class="text-white hover:text-gray-400 px-4 py-2">Services</a>
+        <a href="#" class="text-white hover:text-gray-400 px-4 py-2">Contact Us</a>
+      </nav>
+      <!-- Footer Social Links -->
+      <div class="mt-4 md:mt-0">
+        <a href="#" class="text-white hover:text-gray-400 px-3 py-2"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-white hover:text-gray-400 px-3 py-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white hover:text-gray-400 px-3 py-2"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+  
   <script>
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
