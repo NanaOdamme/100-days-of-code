@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        .sidebar {
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Side menu -->
+    <div class="flex  bg-gray-200">
+        <!-- Sidebar -->
+        <div class="bg-gray-800 text-white w-64 flex flex-col sidebar">
+            <div class="p-4">
+                <h1 class="text-xl font-semibold">Admin</h1>
+            </div>
+            <ul class="flex-1">
+                <li class="py-2 px-4 hover:bg-gray-700 cursor-pointer">Dashboard</li>
+                <li class="py-2 px-4 hover:bg-gray-700 cursor-pointer">Users</li>
+                <li class="py-2 px-4 hover:bg-gray-700 cursor-pointer">Settings</li>
+                <li class="py-2 px-4 hover:bg-gray-700 cursor-pointer">Logout</li>
+            </ul>
+        </div>
+        <div class="flex-1 p-10">
+            <h1 class="text-2xl font-semibold mb-5">Employees Payroll</h1>
+            <button id="toggleSidebar" class="bg-gray-800 text-white py-2 px-4 rounded-lg mb-4">Toggle Sidebar</button>
+            <!-- Department selection -->
+            <div class="mb-4">
+                <label for="departmentSelect" class="block mb-1">Select Department:</label>
+                <select id="departmentSelect" class="border rounded px-4 py-2 w-full">
+                    <option value="finance">Finance</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="hr">Human Resources</option>
+                    <!-- Add more departments as needed -->
+                </select>
+            </div>
+            <!-- Employee section -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-lg font-semibold mb-2">Employee List</h2>
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full border-collapse">
+                        <thead>
+                            <tr class="bg-gray-800 text-white">
+                                <th class="py-2 px-4 text-left">
+                                    <input type="checkbox" id="selectAllEmployees">
+                                </th>
+                                <th class="py-2 px-4 text-left">ID</th>
+                                <th class="py-2 px-4 text-left">Name</th>
+                                <th class="py-2 px-4 text-left">Position</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-800" id="employeeTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Process Pay section -->
+            <div class="bg-white p-4 rounded-lg shadow-md mt-8">
+                <h2 class="text-lg font-semibold mb-4">Process Pay</h2>
+                <div class="flex items-center mb-4">
+                    <label for="monthSelect" class="mr-2">Select Month:</label>
+                    <select id="monthSelect" class="border rounded px-4 py-2">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <!-- Add more months as needed -->
+                    </select>
+                    <label for="yearSelect" class="ml-4 mr-2">Select Year:</label>
+                    <select id="yearSelect" class="border rounded px-4 py-2">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <!-- Add more years as needed -->
+                    </select>
+                    <button id="processPayBtn" class="bg-blue-500 text-white py-2 px-4 ml-4 rounded-lg">Process Pay</button>
+                </div>
+                <div id="payrollReport" class="hidden bg-white p-6 rounded-lg shadow-md mt-8">
+    <h3 class="text-lg font-semibold mb-2">Payroll Report</h3>
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <label for="department" class="block mb-1">Department:</label>
+            <span id="department" class="text-gray-800"></span>
+        </div>
+        <div>
+            <label for="monthYear" class="block mb-1">Month and Year:</label>
+            <span id="monthYear" class="text-gray-800"></span>
+        </div>
+        <div>
+            <label for="employees" class="block mb-1">Employees:</label>
+            <ul id="employees" class="text-gray-800"></ul>
+        </div>
+        <div>
+            <label for="totalSalary" class="block mb-1">Total Salary:</label>
+            <span id="totalSalary" class="text-gray-800"></span>
+        </div>
+    </div>
+    <div id="payrollReport" class="hidden bg-white p-6 rounded-lg shadow-md mt-8">
+        <!-- Other content as before -->
+        <div class="flex justify-between mt-4">
+            <button id="printPdfBtn" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Print as PDF</button>
+            <button id="printTextBtn" class="bg-green-500 text-white py-2 px-4 rounded-lg">Print as Text</button>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const departmentSelect = document.getElementById('departmentSelect');
+        const employeeTableBody = document.getElementById('employeeTableBody');
+        const selectAllCheckbox = document.getElementById('selectAllEmployees');
+        const toggleSidebarBtn = document.getElementById('toggleSidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const monthSelect = document.getElementById('monthSelect');
+        const yearSelect = document.getElementById('yearSelect');
+        const processPayBtn = document.getElementById('processPayBtn');
+        const payrollReport = document.getElementById('payrollReport');
+        const departmentSpan = document.getElementById('department');
+        const monthYearSpan = document.getElementById('monthYear');
+        const employeesUl = document.getElementById('employees');
+        const totalSalarySpan = document.getElementById('totalSalary');
+
+        function loadEmployees(department) {
+            fetch(`employees_${department}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    employeeTableBody.innerHTML = ''; // Clear existing rows
+                    data.forEach(employee => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="py-2 px-4 text-left">
+                                <input type="checkbox" class="employeeCheckbox">
+                            </td>
+                            <td class="py-2 px-4 text-left">${employee.id}</td>
+                            <td class="py-2 px-4 text-left">${employee.name}</td>
+                            <td class="py-2 px-4 text-left">${employee.position}</td>
+                        `;
+                        employeeTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching employees:', error));
+        }
+
+        departmentSelect.addEventListener('change', () => {
+            const selectedDepartment = departmentSelect.value;
+            loadEmployees(selectedDepartment);
+        });
+
+        selectAllCheckbox.addEventListener('change', () => {
+            const isChecked = selectAllCheckbox.checked;
+            const employeeCheckboxes = document.querySelectorAll('.employeeCheckbox');
+            employeeCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        toggleSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+
+        // Initial load with default department (Finance)
+        loadEmployees('finance');
+
+        function processPay() {
+            const selectedDepartment = departmentSelect.value;
+            const selectedMonth = monthSelect.value;
+            const selectedYear = yearSelect.value;
+            const selectedEmployees = Array.from(document.querySelectorAll('.employeeCheckbox:checked'))
+                .map(checkbox => ({
+                    name: checkbox.parentElement.parentElement.querySelector('.text-left:nth-child(3)').textContent,
+                    id: parseInt(checkbox.parentElement.parentElement.querySelector('.text-left:nth-child(2)').textContent),
+                }));
+
+            // Fill in the payroll report
+            departmentSpan.textContent = selectedDepartment;
+            monthYearSpan.textContent = `${selectedMonth}/${selectedYear}`;
+            employeesUl.innerHTML = '';
+            let totalSalary = 0;
+
+            selectedEmployees.forEach(employee => {
+                let salary;
+                if (employee.id === 1) {
+                    salary = 8000;
+                } else {
+                    salary = 0.8 * 8000; // 20% discount
+                }
+
+                totalSalary += salary;
+
+                const li = document.createElement('li');
+                li.textContent = `${employee.name}: $${salary}`;
+                employeesUl.appendChild(li);
+            });
+
+            // Display total salary
+            totalSalarySpan.textContent = `$${totalSalary}`;
+
+            // Show the payroll report
+            payrollReport.classList.remove('hidden');
+        }
+
+        processPayBtn.addEventListener('click', processPay);
+        
+        
+   
+    </script>
+</body>
+
+</html>

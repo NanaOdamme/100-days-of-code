@@ -1,0 +1,8 @@
+[
+    { "id": 1, "name": "Mike Johnson", "position": "Marketing Manager" },
+    { "id": 2, "name": "Emily Brown", "position": "Marketing Coordinator" },
+    { "id": 3, "name": "David Lee", "position": "Digital Marketing Specialist" },
+    { "id": 4, "name": "Sarah Adams", "position": "Social Media Manager" },
+    { "id": 5, "name": "John Doe", "position": "Marketing Analyst" },
+    { "id": 6, "name": "Jane Smith", "position": "Content Writer" }
+]

@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "John Doe", "position": "Accountant" },
+  { "id": 2, "name": "Jane Smith", "position": "Financial Analyst" },
+  { "id": 3, "name": "Michael Johnson", "position": "Finance Manager" },
+  { "id": 4, "name": "Emily Brown", "position": "Finance Coordinator" },
+  { "id": 5, "name": "David Lee", "position": "Senior Accountant" },
+  { "id": 6, "name": "Sarah Adams", "position": "Accounting Clerk" }
+]

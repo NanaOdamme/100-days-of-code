@@ -1,0 +1,8 @@
+[
+    { "id": 1, "name": "David Lee", "position": "HR Manager" },
+    { "id": 2, "name": "Sarah Adams", "position": "HR Coordinator" },
+    { "id": 3, "name": "Mike Johnson", "position": "Recruitment Specialist" },
+    { "id": 4, "name": "Emily Brown", "position": "Training Manager" },
+    { "id": 5, "name": "John Doe", "position": "Compensation Analyst" },
+    { "id": 6, "name": "Jane Smith", "position": "Benefits Coordinator" }
+]
