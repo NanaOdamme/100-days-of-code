@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User and Product Data</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // Sample user data
+    const userData = [
+      { id: 1, name: 'Alice', email: 'alice@example.com' },
+      { id: 2, name: 'Bob', email: 'bob@example.com' },
+    ];
+
+    // Sample product data
+    const productData = [
+      { id: 101, name: 'Product A', price: 20 },
+      { id: 102, name: 'Product B', price: 30 },
+    ];
+
+    // Merge user data and product data using spread syntax
+    const mergedData = [...userData, ...productData];
+
+    // Display merged data in the HTML
+    const appElement = document.getElementById('app');
+
+    // Create a list to display merged data
+    const ulElement = document.createElement('ul');
+
+    // Iterate through merged data and create list items
+    mergedData.forEach(item => {
+      const liElement = document.createElement('li');
+      if (item.hasOwnProperty('email')) {
+        liElement.textContent = `User: ${item.name} (${item.email})`;
+      } else {
+        liElement.textContent = `Product: ${item.name} - $${item.price}`;
+      }
+      ulElement.appendChild(liElement);
+    });
+
+    // Append the list to the app element in HTML
+    appElement.appendChild(ulElement);
+  </script>
+</body>
+</html>
