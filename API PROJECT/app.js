@@ -1,4 +1,5 @@
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
 const mysql = require('mysql');
 const methodOverride = require('method-override');
 const path = require('path');
@@ -10,6 +11,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+app.use(expressLayouts);
+app.set('layout', 'layouts/layout');
+
 
 
 const connection = mysql.createConnection({
@@ -27,6 +31,12 @@ connection.connect(err => {
     console.log('Connected to MySQL database!');
 });
 
+// render dashboard
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard', { title: 'Dashboard' });
+  });
+
+  
 // Route to render employee form
 app.get('/employees/new', (req, res) => {
     connection.query('SELECT * FROM departments', (error, results) => {
@@ -35,7 +45,7 @@ app.get('/employees/new', (req, res) => {
             res.send('Error fetching departments data.');
             return;
         }
-        res.render('employeeForm', { departments: results });
+        res.render('employeeForm', { title:'Add Employee', departments: results });
     });
 });
 
@@ -74,7 +84,7 @@ app.get('/employees', (req, res) => {
             res.send('Error fetching employees data.');
             return;
         }
-        res.render('employees', { employees: results });
+        res.render('employees', { title: 'Employess', employees: results });
     });
 });
 
@@ -194,7 +204,7 @@ app.get('/departments', (req, res) => {
             res.send('Error fetching departments data.');
             return;
         }
-        res.render('departments', { departments: results });
+        res.render('departments', { title:'Departments', departments: results });
     });
 });
 

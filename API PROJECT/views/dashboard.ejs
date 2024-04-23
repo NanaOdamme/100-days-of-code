@@ -1,0 +1,115 @@
+<div class="container mx-auto mt-8">
+    <div class="grid grid-cols-2 gap-6">
+        <!-- Card 1: Chart -->
+        <div class="bg-blue-500 rounded-lg p-6 text-white shadow">
+            <h2 class="text-xl font-semibold mb-4">Sales Chart</h2>
+            <canvas id="salesChart" width="400" height="200"></canvas>
+        </div>
+        <!-- Card 2: Graph -->
+        <div class="bg-pink-400 rounded-lg p-6 text-black shadow">
+            <h2 class="text-xl font-semibold mb-4">Revenue Graph</h2>
+            <canvas id="revenueGraph" width="400" height="200"></canvas>
+        </div>
+        <!-- Card 3: Total Employees and Departments -->
+        <div class="bg-white rounded-lg p-6 shadow">
+            <h2 class="text-xl font-semibold mb-4">Company Overview</h2>
+            <p>Total Employees: 100</p>
+            <p>Total Departments: 5</p>
+        </div>
+
+        <!-- Card 4: Employee List -->
+        <div class="bg-blue-200 rounded-lg p-6 shadow">
+            <h2 class="text-xl font-semibold mb-4">Futuristic Employee Table</h2>
+            <div class="overflow-x-auto">
+                <table class="table-auto w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">Name</th>
+                            <th class="px-4 py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2">John Doe</td>
+                            <td class="border px-4 py-2 text-green-600">Active</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">Jane Smith</td>
+                            <td class="border px-4 py-2 text-red-600" >Inactive</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">Michael Johnson</td>
+                            <td class="border px-4 py-2 text-green-600">Active</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">Sarah Brown</td>
+                            <td class="border px-4 py-2 text-green-600">Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+<script>
+    // Chart data
+    const salesData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+            label: 'Sales',
+            data: [50, 60, 70, 65, 80, 75],
+            backgroundColor: 'rgba(50, 12, 126, 12)',
+            borderColor: 'rgba(33, 150, 243, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const revenueData = {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+            label: 'Revenue',
+            data: [20000, 25000, 30000, 28000],
+            backgroundColor: 'rgba(16, 33, 100, 0.8)',
+            borderColor: 'rgba(100, 30, 99, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Chart configuration
+    const chartConfig = {
+        type: 'bar',
+        data: salesData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    const graphConfig = {
+        type: 'line',
+        data: revenueData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    
+    // Create charts
+    const salesChartCtx = document.getElementById('salesChart').getContext('2d');
+    new Chart(salesChartCtx, chartConfig);
+
+    const revenueGraphCtx = document.getElementById('revenueGraph').getContext('2d');
+    new Chart(revenueGraphCtx, graphConfig);
+</script>
