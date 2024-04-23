@@ -9,71 +9,139 @@
 </head>
 
 <body class="bg-gray-200 p-8">
-  <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Company Profile</h2>
-    <form id="companyForm" class="space-y-4">
-      <div class="grid grid-cols-2 gap-4">
+  <div class="max-w-4xl mx-auto bg-white p-10 rounded-lg shadow-md">
+    <h2 class="text-4xl font-semibold mb-8 text-center">Company Profile</h2>
+    <div class="flex justify-center mb-6">
+      <label for="selectProfile" class="block text-lg font-medium text-gray-700 mr-4">Select Company Profile:</label>
+      <select id="selectProfile" class="border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
+        <option value="">Select a profile</option>
+        <!-- Dynamically populate options -->
+      </select>
+    </div>
+    <form id="companyForm" class="space-y-6">
+      <div class="grid grid-cols-2 gap-6">
         <div>
-          <label for="companyName" class="block text-sm font-medium text-gray-700">Company Name</label>
-          <input type="text" id="companyName" name="companyName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <label for="companyName" class="block text-lg font-medium text-gray-700">Company Name</label>
+          <input type="text" id="companyName" name="companyName" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
         </div>
         <div>
-          <label for="companyNumber" class="block text-sm font-medium text-gray-700">Company Number</label>
-          <input type="text" id="companyNumber" name="companyNumber" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <label for="companyNumber" class="block text-lg font-medium text-gray-700">Company Number</label>
+          <input type="text" id="companyNumber" name="companyNumber" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
+        </div>
+        <div>
+            <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
+          </div>
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <label for="address" class="block text-lg font-medium text-gray-700">Address</label>
+          <input type="text" id="address" name="address" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
+        </div>
+        <div>
+          <label for="city" class="block text-lg font-medium text-gray-700">City</label>
+          <input type="text" id="city" name="city" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2 gap-6">
         <div>
-          <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-          <input type="text" id="address" name="address" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <label for="country" class="block text-lg font-medium text-gray-700">Country</label>
+          <input type="text" id="country" name="country" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
         </div>
         <div>
-          <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-          <input type="text" id="city" name="city" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-          <input type="text" id="country" name="country" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        </div>
-        <div>
-          <label for="currency" class="block text-sm font-medium text-gray-700">Currency</label>
-          <input type="text" id="currency" name="currency" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <label for="currency" class="block text-lg font-medium text-gray-700">Currency</label>
+          <input type="text" id="currency" name="currency" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2 gap-6">
         <div>
-          <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-          <input type="text" id="phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <label for="phone" class="block text-lg font-medium text-gray-700">Phone</label>
+          <input type="text" id="phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
         </div>
         <div>
-          <label for="vatRate" class="block text-sm font-medium text-gray-700">VAT Rate</label>
-          <input type="text" id="vatRate" name="vatRate" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <label for="vatRate" class="block text-lg font-medium text-gray-700">VAT Rate</label>
+          <input type="text" id="vatRate" name="vatRate" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
         </div>
       </div>
       <div>
-        <label for="nhilRate" class="block text-sm font-medium text-gray-700">NHIL Rate</label>
-        <input type="text" id="nhilRate" name="nhilRate" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <label for="nhilRate" class="block text-lg font-medium text-gray-700">NHIL Rate</label>
+        <input type="text" id="nhilRate" name="nhilRate" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg">
       </div>
       <div class="flex justify-center">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Save</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-12  focus:outline-none focus:shadow-outline">Save</button>
       </div>
     </form>
   </div>
 
   <script>
-    document.getElementById('companyForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      const formData = new FormData(this);
-      const formDataObject = {};
-      formData.forEach((value, key) => {
-        formDataObject[key] = value;
-      });
-      console.log(formDataObject);
-      // Here you can send formDataObject to your backend or do something else with it
-    });
-  </script>
+    const companyProfiles = [
+    {
+      id: 1,
+      companyName: "ABC Inc.",
+      companyNumber: "12345",
+      address: "123 Main St",
+      city: "New York",
+      email: "ejehe@gmail.com",
+      country: "USA",
+      currency: "USD",
+      phone: "123-456-7890",
+      vatRate: "10%",
+      nhilRate: "5%",
+    },
+    {
+      id: 2,
+      companyName: "XYZ Corp.",
+      companyNumber: "54321",
+      address: "456 Oak Ave",
+      email: "edmndene@gmail.com",
+      city: "Los Angeles",
+      country: "USA",
+      currency: "USD",
+      phone: "987-654-3210",
+      vatRate: "15%",
+      nhilRate: "7%",
+    },
+  ];
+
+  const selectProfile = document.getElementById('selectProfile');
+  const companyForm = document.getElementById('companyForm');
+
+  companyProfiles.forEach(profile => {
+    const option = document.createElement('option');
+    option.value = profile.id;
+    option.textContent = profile.companyName;
+    selectProfile.appendChild(option);
+  });
+
+  selectProfile.addEventListener('change', function() {
+    const selectedId = parseInt(this.value);
+    if (!isNaN(selectedId)) {
+      const selectedProfile = companyProfiles.find(profile => profile.id === selectedId);
+      if (selectedProfile) {
+        fillForm(selectedProfile);
+      }
+    } else {
+      clearForm();
+    }
+  });
+
+  function fillForm(profile) {
+    companyForm.elements.companyName.value = profile.companyName;
+    companyForm.elements.companyNumber.value = profile.companyNumber;
+    companyForm.elements.email.value = profile.email;
+    companyForm.elements.address.value = profile.address;
+    companyForm.elements.city.value = profile.city;
+    companyForm.elements.country.value = profile.country;
+    companyForm.elements.currency.value = profile.currency;
+    companyForm.elements.phone.value = profile.phone;
+    companyForm.elements.vatRate.value = profile.vatRate;
+    companyForm.elements.nhilRate.value = profile.nhilRate;
+  }
+
+  function clearForm() {
+    companyForm.reset();
+  }
+</script>
 </body>
 
 </html>

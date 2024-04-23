@@ -1,0 +1,22 @@
+<!-- views/layout.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your App Title</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <!-- Include the side menu -->
+    <% include ./partials/sidemenu %>
+
+    <!-- Main content area -->
+    <main class="ml-64 p-4">
+        <!-- Content from child views will be inserted here -->
+        <%- body %>
+    </main>
+</body>
+</html>
