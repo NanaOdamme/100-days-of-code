@@ -1,9 +1,118 @@
-<!-- views/partials/sidemenu.ejs -->
+<style>
+    /* Style for scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px; /* Set the width of the scrollbar */
+    }
 
-<nav class="bg-gray-800 text-white w-64 flex-shrink-0">
-    <ul class="p-4">
-        <li><a href="/departments">Departments</a></li>
-        <li><a href="/employees">Employees</a></li>
-        <!-- Add more menu items as needed -->
-    </ul>
-</nav>
+    ::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Color of the track (the area behind the scrollbar) */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Color of the scrollbar thumb (the draggable part) */
+        border-radius: 4px; /* Rounded corners for the thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Color of the thumb on hover */
+    }
+</style>
+
+<aside class="w-64 bg-gray-800 text-white h-full fixed top-0 left-0 flex flex-col overflow-y-auto">
+    <div class="p-4">
+        <h1 class="text-lg font-bold">Payroll</h1>
+    </div>
+    <nav class="space-y-6"> 
+        <div class="group">
+            <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown1')">
+                General Setup
+                <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M13.293 7.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <!-- Dropdown Content 1 -->
+            <div id="dropdown1" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Company Profile</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Locations</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Employee status</a>
+            </div>
+        </div>
+       
+        <div class="group">
+            <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown2')">
+                Payroll Setups
+                <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M13.293 7.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <!-- Dropdown Content 1 -->
+            <div id="dropdown2" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
+                <a href="/departments" class="block px-4 py-2 text-sm hover:bg-gray-600">Departments</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Remunerations</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Employee Salary Setups</a>
+            </div>
+        </div>
+        <div class="group">
+            <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown3')">
+                Data Entry
+                <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M13.293 7.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <!-- Dropdown Content 1 -->
+            <div id="dropdown3" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
+                <a href="/employees" class="block px-4 py-2 text-sm hover:bg-gray-600">Employee Data</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Employee Loans</a>
+            </div>
+        </div>
+
+        <!-- Dropdown 1 -->
+        <div class="group">
+            <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown4')">
+                Process Payroll
+                <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M13.293 7.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <!-- Dropdown Content 1 -->
+            <div id="dropdown4" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Process Regular Pay</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Process Early Pay</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Post Regular Payroll</a>
+            </div>
+        </div>
+        <!-- Dropdown 2 -->
+        <div class="group">
+            <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown5')">
+                Settings
+                <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M13.293 7.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <!-- Dropdown Content 2 -->
+            <div id="dropdown5" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">General Settings</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Company Setting</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Payroll Settings</a>
+            </div>
+        </div>
+        <ul class="flex">
+            <li class="py-2 px-4 hover:bg-gray-700 cursor-pointer">Logout</li>
+        </ul>
+    </nav>
+</aside>
+
+
+<script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.classList.toggle('hidden');
+
+        // Smooth scroll to the dropdown
+        if (!dropdown.classList.contains('hidden')) {
+            dropdown.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+
