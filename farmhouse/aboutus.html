@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .container {
+            max-width: 800px; /* Adjust as needed */
+            margin: 0 auto;
+            padding: 0 15px;
+          }
+          .owner-image {
+            width: 80%;
+            max-width: 300px; /* Adjust as needed */
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .owner-description {
+            background-color: #E7F3EB;
+            padding: 20px;
+            border-radius: 10px;
+          }
+          .hero {
+            background-image: url('images/aboutus.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px; /* Adjust as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+          }
+          .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+          .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: rgb(0, 40, 11);
+            font-style: italic;
+            font-weight: 600;
+          }
+          /* Owner section styles */
+          .owner-image {
+            width: 80%;
+            max-width: 300px; /* Adjust as needed */
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .owner-description {
+            background-color: #E7F3EB;
+            padding: 20px;
+            border-radius: 10px;
+          }
+      </style>
+</head>
+<body>
+
+    <nav class="bg-white shadow-lg m-10">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-4">
+            <div>
+              <a href="#" class="text-lg font-bold text-gray-800"><img src="images/odame-logo.svg" class="w-10" alt="">
+              </a>
+            </div>
+            <div class="hidden md:flex space-x-4">
+              <a href="index.html" class="text-gray-800 hover:text-gray-600">Home</a>
+              <a href="#" class="text-gray-800 hover:text-gray-600">About</a>
+              <a href="#" class="text-gray-800 hover:text-gray-600">Services</a>
+              <a href="#" class="text-gray-800 hover:text-gray-600">Shop</a>
+              <a href="#" class="text-gray-800 hover:text-gray-600">News</a>
+              <a href="#" class="text-gray-800 hover:text-gray-600">Contact</a>
+            </div>
+            <div class="md:hidden">
+              <button id="mobile-menu-toggle" class="text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden bg-white">
+          <div class="px-4 py-2">
+            <a href="index.html" class="block text-gray-800 hover:text-gray-600 py-2">Home</a>
+            <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">About</a>
+            <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">Services</a>
+            <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">Shop</a>
+            <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">News</a>
+            <a href="#" class="block text-gray-800 hover:text-gray-600 py-2">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="hero mb-10">
+        <div class="container">
+          <h1>Welcome to Our Poultry Farm</h1>
+          <p>Discover the passion and dedication behind Odame's Poultry Farm</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="text-center mb-12">
+            <h2 class="text-2xl font-bold mb-4">Meet Our Owner</h2>
+            <img src="images/prof.jpg" alt="Owner Image" class="owner-image">
+            <div class="owner-description">
+              <p class="text-lg text-gray-800 leading-relaxed">
+                Meet Mr. Ebenezer Odame Anti, a passionate and dedicated poultry farmer with a lifelong love for raising healthy and happy chickens. As the proud owner of Anti's Poultry Farm, Mr. Anti has transformed his childhood dream into a thriving reality.
+                <!-- Your content continues here -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+              
+         <section>  
+         <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+            <!-- Workers Section -->
+              <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-4">Meet Our Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <img src="images/girl.jpg" alt="Worker 1 Image" class="w-80 rounded-full shadow-lg mb-4">
+                    <p class="text-lg text-gray-800 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut augue nec ex mattis ultricies at eu turpis.
+                    </p>
+                  </div>
+                  <div>
+                    <img src="images/man.jpg" alt="Worker 2 Image" class="w-80 rounded-full shadow-lg mb-4">
+                    <p class="text-lg text-gray-800 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut augue nec ex mattis ultricies at eu turpis.
+                    </p>
+                  </div>
+                  <!-- Add more worker sections here if needed -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+
+      <footer class="bg-green-900 text-white py-8">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+          <!-- Footer Logo -->
+          <div class="mb-4 md:mb-0">
+            <img src="images/odame-logo.svg" alt="Footer Logo" class="logo w-32">
+          </div>
+          <!-- Footer Navigation Links -->
+          <nav class="flex flex-wrap items-center justify-center md:justify-end">
+            <a href="#" class="text-white hover:text-gray-400 px-4 py-2">Home</a>
+            <a href="#" class="text-white hover:text-gray-400 px-4 py-2">About Us</a>
+            <a href="#" class="text-white hover:text-gray-400 px-4 py-2">Services</a>
+            <a href="#" class="text-white hover:text-gray-400 px-4 py-2">Contact Us</a>
+          </nav>
+          <!-- Footer Social Links -->
+          <div class="mt-4 md:mt-0">
+            <a href="#" class="text-white hover:text-gray-400 px-3 py-2"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-white hover:text-gray-400 px-3 py-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white hover:text-gray-400 px-3 py-2"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </footer>
+
+
+      <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+    
+        mobileMenuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+    
+        
+      </script>
+</body>
+</html>
