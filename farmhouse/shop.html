@@ -3,134 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poultry Farm Shop</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<title>Show/Hide Element</title>
 <style>
-  .bg-cart {
-    background-color: #007bff;
-  }
-  .bg-cart:hover {
-    background-color: #0056b3;
+  #myElement {
+    display: none;
   }
 </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-<nav class="bg-white shadow-md">
-  <div class="container mx-auto py-4 flex justify-between items-center">
-    <a href="#" class="text-xl font-bold text-gray-800">Odame's Farm</a>
-    <div class="flex space-x-4">
-      <a href="#" class="text-gray-800 hover:text-blue-500">
-        <i class="fas fa-shopping-cart text-xl"></i>
-      </a>
-      <a href="#" class="text-gray-800 hover:text-blue-500">Shop</a>
-    </div>
-  </div>
-</nav>
-
-<div class="container mx-auto py-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Product Card 1 -->
-    <div class="bg-white rounded-lg shadow-lg">
-      <img src="path_to_product_image_1.jpg" alt="Product Image 1" class="rounded-t-lg w-full h-40 object-cover">
-      <div class="p-4">
-        <h2 class="text-lg font-semibold text-gray-800 mb-2">Organic Eggs</h2>
-        <p class="text-gray-600 mb-2">$5.99 per dozen</p>
-        <div class="flex justify-between items-center">
-          <button class="text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded-lg flex items-center" id="addToCart">
-            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- End Product Card 1 -->
-
-    <!-- Product Card 2 -->
-    <!-- Add more product cards here -->
-
-  </div>
+<button onclick="toggleVisibility('myElement')">Toggle Element</button>
+<div id="myElement">
+  This is the element to hide/show.
 </div>
-
-<!-- Cart Modal -->
-<div id="cartModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-  <div class="bg-white p-4 rounded-lg max-w-lg w-full">
-    <h2 class="text-2xl font-semibold mb-4">Your Cart</h2>
-    <div id="cartItems" class="mb-4"></div>
-    <div class="flex justify-end mt-4">
-      <button id="closeCartModal" class="text-gray-500 hover:text-gray-800">Close</button>
-    </div>
-  </div>
-</div>
-<!-- End Cart Modal -->
 
 <script>
-  const openCartModal = document.querySelector('.fa-shopping-cart');
-  const cartModal = document.getElementById('cartModal');
-  const closeCartModal = document.getElementById('closeCartModal');
-  const addToCartBtn = document.getElementById('addToCart');
-  const cartItemsContainer = document.getElementById('cartItems');
-  let cartItems = [];
-
-  openCartModal.addEventListener('click', () => {
-    cartModal.classList.remove('hidden');
-  });
-
-  closeCartModal.addEventListener('click', () => {
-    cartModal.classList.add('hidden');
-  });
-
-  addToCartBtn.addEventListener('click', () => {
-    cartItems.push({ name: 'Organic Eggs', quantity: 1 }); // Add the product to the cart with quantity
-    renderCartItems(); // Update the cart modal with the updated cart items
-  });
-
-  function renderCartItems() {
-    cartItemsContainer.innerHTML = ''; // Clear previous items
-    cartItems.forEach(item => {
-      const itemElement = document.createElement('div');
-      itemElement.classList.add('flex', 'justify-between', 'items-center', 'mb-2');
-
-      const itemName = document.createElement('p');
-      itemName.textContent = item.name;
-      itemElement.appendChild(itemName);
-
-      const quantityContainer = document.createElement('div');
-      quantityContainer.classList.add('flex', 'items-center');
-
-      const removeIcon = document.createElement('i');
-      removeIcon.classList.add('fas', 'fa-minus', 'cursor-pointer', 'text-red-500', 'mx-2');
-      removeIcon.addEventListener('click', () => removeItemFromCart(item));
-      quantityContainer.appendChild(removeIcon);
-
-      const quantity = document.createElement('span');
-      quantity.textContent = item.quantity;
-      quantityContainer.appendChild(quantity);
-
-      const addIcon = document.createElement('i');
-      addIcon.classList.add('fas', 'fa-plus', 'cursor-pointer', 'text-green-500', 'mx-2');
-      addIcon.addEventListener('click', () => addItemToCart(item));
-      quantityContainer.appendChild(addIcon);
-
-      itemElement.appendChild(quantityContainer);
-
-      cartItemsContainer.appendChild(itemElement);
-    });
-  }
-
-  function removeItemFromCart(item) {
-    const itemIndex = cartItems.findIndex(cartItem => cartItem.name === item.name);
-    if (itemIndex !== -1) {
-      cartItems.splice(itemIndex, 1); // Remove the item from the cart
-      renderCartItems(); // Update the cart modal
-    }
-  }
-
-  function addItemToCart(item) {
-    const itemIndex = cartItems.findIndex(cartItem => cartItem.name === item.name);
-    if (itemIndex !== -1) {
-      cartItems[itemIndex].quantity++; // Increase quantity
-      renderCartItems(); // Update the cart modal
+  function toggleVisibility(elementId) {
+    var element = document.getElementById(elementId);
+    if (element.style.display === 'none') {
+      element.style.display = 'block';
+    } else {
+      element.style.display = 'none';
     }
   }
 </script>

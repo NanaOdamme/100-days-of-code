@@ -6,18 +6,76 @@
     <title><%= title %></title>
     <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        /* Style for scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px; /* Set the width of the scrollbar */
+        }
+    
+        ::-webkit-scrollbar-track {
+            background-color: #f1f1f1; /* Color of the track (the area behind the scrollbar) */
+        }
+    
+        ::-webkit-scrollbar-thumb {
+            background-color: #888; /* Color of the scrollbar thumb (the draggable part) */
+            border-radius: 4px; /* Rounded corners for the thumb */
+        }
+    
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Color of the thumb on hover */
+        }
+    
+        /* Style for content area when sidebar is hidden */
+        .content-full {
+            margin-left: 0; /* Remove left margin when sidebar is hidden */
+        }
+    
+        /* Style for content area when sidebar is visible */
+        .content-sidebar {
+            transition: margin-left 0.1s ease; /* Smooth transition for margin change */
+        }
+        .toggle-button {
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            color: #ffffff;
+            padding: 8px;
+            z-index: 10;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
 
     <section class="flex h-screen">
         <!-- Sidebar -->
         <%- include('../partials/sidemenu') %>
-        
+        <div class="toggle-button bg-gray-800" onclick="toggleSidebar()">
+            <!-- You can replace the icon below with your preferred icon code -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 4h18v2H3V4zm0 6h18v2H3v-2zm0 6h18v2H3v-2z"/>
+            </svg>
+        </div>
         <!-- Main Content -->
-        <div class="flex-1 ml-64 p-8">
+        <div id="content" class="flex-1 ml-64 p-8 content-sidebar">
+            
             <!-- Dynamic content -->
             <%- body %>
         </div>
+        <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('content');
+    
+            sidebar.classList.toggle('hidden');
+            content.classList.toggle('content-full');
+            content.classList.toggle('content-sidebar');
+        }
+    </script>
     </section>
 
 </body>

@@ -1,31 +1,25 @@
-<style>
-    /* Style for scrollbar */
-    ::-webkit-scrollbar {
-        width: 8px; /* Set the width of the scrollbar */
-    }
 
-    ::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* Color of the track (the area behind the scrollbar) */
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: #888; /* Color of the scrollbar thumb (the draggable part) */
-        border-radius: 4px; /* Rounded corners for the thumb */
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: #555; /* Color of the thumb on hover */
-    }
-</style>
-
-<aside class="w-64 bg-gray-800 text-white h-full fixed top-0 left-0 flex flex-col overflow-y-auto">
+<aside class="w-64 bg-gray-800 text-white h-full fixed top-0 left-0 flex flex-col overflow-y-auto pt-10" id="sidebar">
     <div class="p-4">
         <h1 class="text-lg font-bold">Payroll</h1>
     </div>
+    
+    <button class="inline-flex items-center pb-4 hover:bg-gray-100 focus:bg-gray-100 rounded-lg">
+        <span class="sr-only">User Menu</span>
+        <span class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
+            <img src="" alt="user profile photo" class="h-full w-full object-cover">
+          </span>
+        <div class="hidden md:flex md:flex-col md:items-start md:leading-tight">
+          <span class="font-semibold">Admin</span>
+          <span class="text-sm text-gray-600">System Administrator</span>
+        </div>
+      </button>
+
     <nav class="space-y-6"> 
         <div class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
             <a href="/dashboard">Dashboard</a>
         </div>
+        
         <div class="group">
             <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown1')">
                 General Setup
@@ -103,11 +97,13 @@
             <li class="py-2 px-4 hover:bg-gray-700 cursor-pointer">Logout</li>
         </ul>
     </nav>
+    
 </aside>
 
 
 
 <script>
+
     function toggleDropdown(id) {
         const dropdown = document.getElementById(id);
         dropdown.classList.toggle('hidden');
