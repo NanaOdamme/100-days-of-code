@@ -12,7 +12,7 @@
     <style>
         /* Style for scrollbar */
         ::-webkit-scrollbar {
-            width: 8px; /* Set the width of the scrollbar */
+            width: 4px; /* Set the width of the scrollbar */
         }
     
         ::-webkit-scrollbar-track {
@@ -20,7 +20,7 @@
         }
     
         ::-webkit-scrollbar-thumb {
-            background-color: #888; /* Color of the scrollbar thumb (the draggable part) */
+            background-color: #090226; /* Color of the scrollbar thumb (the draggable part) */
             border-radius: 4px; /* Rounded corners for the thumb */
         }
     
@@ -30,12 +30,17 @@
     
         /* Style for content area when sidebar is hidden */
         .content-full {
-            margin-left: 0; /* Remove left margin when sidebar is hidden */
+            margin-left: -34px; /* Remove left margin when sidebar is hidden */
         }
     
         /* Style for content area when sidebar is visible */
         .content-sidebar {
             transition: margin-left 0.1s ease; /* Smooth transition for margin change */
+        }
+       
+
+        .day {
+            width: calc(100% / 7);
         }
         .toggle-button {
             position: fixed;
@@ -49,22 +54,34 @@
             cursor: pointer;
         }
         /* Custom styles for light and dark mode */
-        /* sidebar setting */
-        .dark-mode aside{
-            background-color: #e1e9f5;
-            color: #061524;
+        .dark-mode{
+          background-color: #04093f;
         }
-        .dark-mode aside .button:hover{
-            background-color: aquamarine;
+        /* dashbord setting */
+       
+        .dark-mode .dash{
+            color: #ffffff;
         }
-
-        .dark-mode .btn {
-            background-color: #4f46e5;
-            color: #f9fafb;
+        .dark-mode .dash .header{
+            background-color: #242543;
         }
+        .dark-mode .dash .outlinebtn{
+             border: 1px solid #fff;
+             color: #f1f1f1;
+        }
+        .dark-mode .dash .outlinebtn:hover{
+            color: #000000;
 
-
-
+       }
+       .dark-mode .dash .col1{
+        background-color: #383b72;
+   }
+   .dark-mode .dash .text-gray-600 {
+    color: rgb(244, 238, 238);
+   }
+  .dark-mode .dash .text-gray-500{
+    color: aliceblue;
+  }
 
         .togglebtn{
             position: fixed;
