@@ -1,6 +1,7 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const path = require('path');
 const app = express();
@@ -13,7 +14,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use(expressLayouts);
 app.set('layout', 'layouts/layout');
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 const connection = mysql.createConnection({
@@ -135,6 +137,102 @@ app.post('/employees/:id', (req, res) => {
         }
     );
 });
+
+
+// GET route to fetch employee names and status from MySQL employees table
+app.get('/employeeStatus', (req, res) => {
+    connection.query('SELECT CONCAT(firstName, " ", IFNULL(middleName, ""), " ", lastName) AS fullName, status, employeeNumber FROM employees', (error, results) => {
+        if (error) {
+            console.error('Error fetching employee names:', error);
+            res.status(500).send('Error fetching employee names: ' + error.message);
+            return;
+        }
+        console.log('Employee names fetched:', results);
+        res.render('employeeStatus', {title:'status' ,employees: results });
+    });
+});
+
+// POST route to update employee status
+app.post('/updateStatus/:employeeNumber', (req, res) => {
+    const employeeNumber = req.params.employeeNumber;
+    const newStatus = req.body.status === '1' ? 1 : 0;
+
+    connection.query('UPDATE employees SET status = ? WHERE employeeNumber = ?', [newStatus, employeeNumber], (error, results) => {
+        if (error) {
+            console.error('Error updating status:', error);
+            res.status(500).send('Error updating status: ' + error.message);
+            return;
+        }
+        console.log('Status updated for employee:', employeeNumber);
+        res.redirect('/employeeStatus'); // Redirect to the employee list page
+    });
+});
+
+// Function to fetch employees' full names from the database
+function fetchEmployeesFromDatabase(callback) {
+    connection.query('SELECT CONCAT(lastName, ", ", IFNULL(firstName, ""), " ", IFNULL(middleName, "")) AS fullName FROM employees', (error, results) => {
+        if (error) {
+            console.error('Error fetching employees:', error);
+            callback(error, null);
+        } else {
+            callback(null, results);
+        }
+    });
+}
+
+// GET route to render salary setup page
+app.get('/salarySetup', (req, res) => {
+    fetchEmployeesFromDatabase((error, employees) => {
+        if (error) {
+            res.status(500).send('Error fetching employees from database');
+        } else {
+            res.render('salarySetup', {title:'salaries', employees });
+        }
+    });
+});
+
+
+
+// POST route to add new salary
+app.post('/addSalary', (req, res) => {
+    const { employeeName, salary, bonus, deductions, taxes } = req.body;
+    
+    // Insert the salary data into the database
+    // You would need to modify this part to fit your database schema
+    connection.query('INSERT INTO salaries (employeeName, salary, bonus, deductions, taxes) VALUES (?, ?, ?, ?, ?)', 
+        [employeeName, salary, bonus, deductions, taxes], 
+        (error, results) => {
+            if (error) {
+                console.error('Error adding salary:', error);
+                res.status(500).send('Error adding salary: ' + error.message);
+                return;
+            }
+            console.log('Salary added:', results);
+            res.redirect('/salarySetup'); // Redirect back to the salary setup page
+        }
+    );
+});
+
+// POST route to edit existing salary
+app.post('/editSalary', (req, res) => {
+    const { employeeName, newSalary, newBonus, newDeductions, newTaxes } = req.body;
+    
+    // Update the salary data in the database based on employee name
+    // You would need to modify this part to fit your database schema
+    connection.query('UPDATE salaries SET salary = ?, bonus = ?, deductions = ?, taxes = ? WHERE employeeName = ?', 
+        [newSalary, newBonus, newDeductions, newTaxes, employeeName], 
+        (error, results) => {
+            if (error) {
+                console.error('Error updating salary:', error);
+                res.status(500).send('Error updating salary: ' + error.message);
+                return;
+            }
+            console.log('Salary updated:', results);
+            res.redirect('/salarySetup'); // Redirect back to the salary setup page
+        }
+    );
+});
+
 
 // departments
 app.post('/departments', (req, res) => {
