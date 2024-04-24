@@ -107,7 +107,7 @@ app.get('/employees/:id/edit', (req, res) => {
                 return;
             }
 
-            res.render('editEmployee', { employee: results[0], departments: deptResults });
+            res.render('editEmployee',  { title: 'editDepartment', employee: results[0], departments: deptResults });
         });
     });
 });
@@ -161,7 +161,7 @@ app.get('/departments/:id/edit', (req, res) => {
             res.send('Department not found.');
             return;
         }
-        res.render('editDepartment', { department: results[0] });
+        res.render('editDepartment', { title: 'editDepartment', department: results[0] });
     });
 });
 
