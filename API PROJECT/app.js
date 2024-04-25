@@ -4,6 +4,10 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const flash = require('connect-flash');
+
 const path = require('path');
 const app = express();
 const PORT = 3000;
@@ -19,10 +23,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
     secret: 'ee4a8dd93bf1a6f6f73ac6167a98da599f680fce0c0d78b7c27a8240f28a57b9',
-    resave: false,
+    resave: true,
     saveUninitialized: true
   }));
-
+// Configure Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -38,6 +45,71 @@ connection.connect(err => {
     }
     console.log('Connected to MySQL database!');
 });
+
+
+// Function to retrieve user by username from the database
+function getUserByUsername(username, callback) {
+    const sql = 'SELECT * FROM users WHERE username = ?';
+    connection.query(sql, [username], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        callback(null, result[0]); // Pass the user object to the callback
+      } else {
+        callback(null, null); // User not found
+      }
+    });
+  }
+  // Function to retrieve user by ID from the database
+function getUserById(id, callback) {
+    const sql = 'SELECT * FROM users WHERE id = ?';
+    connection.query(sql, [id], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        callback(null, result[0]); // Pass the user object to the callback
+      } else {
+        callback(new Error('User not found'), null); // User not found error
+      }
+    });
+  }
+  // Example usage:
+  passport.use(new LocalStrategy(
+    (username, password, done) => {
+      getUserByUsername(username, (err, user) => {
+        if (err) return done(err);
+        if (!user || user.password !== password) {
+          return done(null, false, { message: 'Invalid credentials' });
+        }
+        return done(null, user);
+      });
+    }
+  ));
+  // Serialize and deserialize user
+ // Configure Passport.js serialization and deserialization
+passport.serializeUser((user, done) => {
+    done(null, user.id); // Serialize user ID to the session
+  });
+  
+  passport.deserializeUser((id, done) => {
+    getUserById(id, (err, user) => {
+      done(err, user); // Deserialize user object from the session
+    });
+  });
+
+
+
+
+// Assuming you have a route to handle admin login
+app.post('/admin-login', (req, res) => {
+    const { username, password } = req.body;
+    // Validate admin credentials and retrieve admin ID
+    const adminId = getAdminIdByUsername(username);
+    if (adminId) {
+      req.session.adminId = adminId; // Store admin ID in session
+      res.redirect('/dashboard'); // Redirect to dashboard after successful login
+    } else {
+      res.redirect('/admin-login'); // Redirect back to admin login page on failure
+    }
+  });
 
 
 app.get('/register', (req, res) => {
@@ -59,17 +131,31 @@ app.get('/register', (req, res) => {
 
   app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    const sql = 'SELECT * FROM admins WHERE username = ? AND password = ?';
-    connection.query(sql, [username, password], (err, result) => {
+    const sqlAdmin = 'SELECT * FROM admins WHERE username = ? AND password = ?';
+    const sqlUser = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  
+    // Check if the user is an admin
+    connection.query(sqlAdmin, [username, password], (err, adminResult) => {
       if (err) throw err;
-      if (result.length > 0) {
-        // Authentication successful
+      if (adminResult.length > 0) {
+        // Admin authentication successful
         req.session.username = username;
-        req.session.authenticated = true; // Set session variable
-        res.redirect('/dashboard');
+        req.session.authenticated = true; // Set session variable for admin
+        res.redirect('/dashboard'); // Redirect admin to dashboard
       } else {
-        // Authentication failed
-        res.send('Invalid username or password');
+        // Check if the user is a regular user
+        connection.query(sqlUser, [username, password], (err, userResult) => {
+          if (err) throw err;
+          if (userResult.length > 0) {
+            // Regular user authentication successful
+            req.session.username = username;
+            req.session.authenticated = true; // Set session variable for user
+            res.redirect('/dashboard'); // Redirect user to dashboard
+          } else {
+            // Authentication failed for both admin and user
+            res.send('Invalid username or password');
+          }
+        });
       }
     });
   });
@@ -99,7 +185,98 @@ app.get('/dashboard', requireAuth, (req, res) => {
     res.render('dashboard', {title:'dashboard', username });
   });
 
+
+
+
+
+
+//crud for creating users
   
+app.post('/users', (req, res) => {
+    const { username, password } = req.body;
+    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    connection.query(sql, [username, password], (err, result) => {
+      if (err) {
+        res.status(500).send('Error adding user');
+      } else {
+        res.redirect('/users'); // Redirect to user list page after successful insertion
+      }
+    });
+  });
+  
+  // Update User Route
+app.post('/users/update/:id', (req, res) => {
+    const userId = req.params.id;
+    const { username, password } = req.body;
+    const sql = 'UPDATE users SET username = ?, password = ? WHERE id = ?';
+    connection.query(sql, [username, password, userId], (err, result) => {
+      if (err) {
+        res.status(500).send('Error updating user');
+      } else {
+        res.redirect('/users'); // Redirect back to the users list
+      }
+    });
+  });
+
+  // Delete User Route
+app.post('/users/delete/:id', (req, res) => {
+    const userId = req.params.id;
+    const sql = 'DELETE FROM users WHERE id = ?';
+    connection.query(sql, [userId], (err, result) => {
+      if (err) {
+        res.status(500).send('Error deleting user');
+      } else {
+        res.redirect('/users'); // Redirect back to the users list
+      }
+    });
+  });
+  
+
+  // Route to fetch users from database and render users.ejs
+  app.get('/users', isAdmin, (req, res) => {
+    const sqlAdmins = 'SELECT * FROM admins';
+    const sqlUsers = 'SELECT * FROM users';
+    connection.query(sqlAdmins, (errAdmins, admins) => {
+      if (errAdmins) {
+        res.status(500).send('Error fetching admins');
+      } else {
+        connection.query(sqlUsers, (errUsers, users) => {
+          if (errUsers) {
+            res.status(500).send('Error fetching users');
+          } else {
+            res.render('users', { title: 'Manage Users', admins, users });
+          }
+        });
+      }
+    });
+  });
+  
+  
+  app.get('/add-user', isAdmin, (req, res) => {
+    res.render('addUser', { title:'adduser' });
+  });
+  
+
+// Middleware to check if user is admin
+function isAdmin(req, res, next) {
+    if (req.session.authenticated && req.session.role === 'admin') {
+      // User is authenticated and is an admin, proceed to the next middleware
+      next();
+    } else {
+      // User is not an admin, redirect or handle as needed
+      res.status(403).send('Access Forbidden');
+    }
+  }
+  // Example restricted route
+app.get('/dashboard', isAdmin, (req, res) => {
+    // This route will only be accessible by admins
+    res.render('admin_dashboard', { title: 'Admin Dashboard' });
+  });
+
+
+
+
+
 // Route to render employee form
 app.get('/employees/new', (req, res) => {
     connection.query('SELECT * FROM departments', (error, results) => {
