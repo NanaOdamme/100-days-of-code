@@ -3,6 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const session = require('express-session');
 const path = require('path');
 const app = express();
 const PORT = 3000;
@@ -16,6 +17,11 @@ app.use(expressLayouts);
 app.set('layout', 'layouts/layout');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({
+    secret: 'ee4a8dd93bf1a6f6f73ac6167a98da599f680fce0c0d78b7c27a8240f28a57b9',
+    resave: false,
+    saveUninitialized: true
+  }));
 
 
 const connection = mysql.createConnection({
@@ -33,9 +39,64 @@ connection.connect(err => {
     console.log('Connected to MySQL database!');
 });
 
+
+app.get('/register', (req, res) => {
+    res.render('register', { title: 'Register', layout: false });
+  });
+
+  app.get('/login', (req, res) => {
+    res.render('login', { title: 'Login', layout: false });
+  });
+
+  app.post('/register', (req, res) => {
+    const { username, password } = req.body;
+    const sql = 'INSERT INTO admins (username, password) VALUES (?, ?)';
+    connection.query(sql, [username, password], (err, result) => {
+      if (err) throw err;
+      res.send('Admin registered successfully');
+    });
+  });
+
+  app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    const sql = 'SELECT * FROM admins WHERE username = ? AND password = ?';
+    connection.query(sql, [username, password], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        // Authentication successful
+        req.session.username = username;
+        req.session.authenticated = true; // Set session variable
+        res.redirect('/dashboard');
+      } else {
+        // Authentication failed
+        res.send('Invalid username or password');
+      }
+    });
+  });
+
+  app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) throw err;
+      res.redirect('/login');
+    });
+  });
+
+  // Define requireAuth middleware
+function requireAuth(req, res, next) {
+    if (req.session && req.session.authenticated) {
+      // If the user is authenticated, proceed to the next middleware/route handler
+      next();
+    } else {
+      // If not authenticated, redirect to the login page or handle unauthorized access
+      res.redirect('/login'); // Redirect to the login page
+    }
+  }
+
 // render dashboard
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard', { title: 'Dashboard' });
+app.get('/dashboard', requireAuth, (req, res) => {
+    const { username } = req.session; // Assuming username is stored in the session
+    console.log(username); 
+    res.render('dashboard', {title:'dashboard', username });
   });
 
   
