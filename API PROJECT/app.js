@@ -586,6 +586,7 @@ app.post('/cities', async (req, res) => {
       console.error('Error creating city:', error);
       res.status(500).send('Error creating city');
   }
+  res.send('city added')
 });
 // Helper function to run queries asynchronously
 function queryAsync(sql, values) {
