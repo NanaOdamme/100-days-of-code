@@ -544,6 +544,335 @@ app.get('/departments', (req, res) => {
     });
 });
 
+app.get('/countries', (req, res) => {
+  res.render('createCountry', {title:'country'});
+});
+
+app.get('/cities', async (req, res) => {
+  try {
+      const countries = await getCountries(); // Fetch countries from the database
+      res.render('createCity', {title:'cities', countries });
+  } catch (error) {
+      console.error('Error fetching countries:', error);
+      res.status(500).send('Error fetching countries');
+  }
+});
+
+// Route to handle country creation form submission
+app.post('/countries', (req, res) => {
+  const { countryName } = req.body;
+
+  const sql = 'INSERT INTO countries (name) VALUES (?)';
+  connection.query(sql, [countryName], (err, result) => {
+      if (err) {
+          console.error('Error creating country:', err);
+          res.status(500).send('Error creating country');
+          return;
+      }
+      console.log('Country created successfully');
+  });
+});
+
+
+// Route to handle city creation form submission
+app.post('/cities', async (req, res) => {
+  const { cityName, countryId } = req.body;
+
+  try {
+      // Insert the new city into the database
+      await queryAsync('INSERT INTO cities (name, country_id) VALUES (?, ?)', [cityName, countryId]);
+      console.log('City created successfully');
+  } catch (error) {
+      console.error('Error creating city:', error);
+      res.status(500).send('Error creating city');
+  }
+});
+// Helper function to run queries asynchronously
+function queryAsync(sql, values) {
+  return new Promise((resolve, reject) => {
+      connection.query(sql, values, (err, result) => {
+          if (err) {
+              reject(err);
+              return;
+          }
+          resolve(result);
+      });
+  });
+}
+// Function to fetch countries from the database
+async function getCountries() {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT id, name FROM countries';
+      connection.query(sql, (err, results) => {
+          if (err) {
+              reject(err);
+              return;
+          }
+          resolve(results);
+      });
+  });
+}
+// Function to fetch a country by ID from the database
+async function getCountryById(countryId) {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT id, name FROM countries WHERE id = ?';
+      connection.query(sql, [countryId], (err, result) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          if (result.length === 0) {
+              resolve(null); // Resolve with null if country is not found
+          } else {
+              resolve(result[0]); // Resolve with the country data
+          }
+      });
+  });
+}
+// Route to render the countries and cities page
+app.get('/locations', async (req, res) => {
+  try {
+      const countries = await getCountriesWithCities(); // Fetch countries with their cities
+      res.render('locations', {title:'locations', countries });
+  } catch (error) {
+      console.error('Error fetching countries and cities:', error);
+      res.status(500).send('Error fetching countries and cities');
+  }
+});
+// Function to fetch countries with their cities from the database
+async function getCountriesWithCities() {
+  return new Promise((resolve, reject) => {
+      const sql = `
+          SELECT c.id AS country_id, c.name AS country_name, ci.id AS city_id, ci.name AS city_name
+          FROM countries c
+          LEFT JOIN cities ci ON c.id = ci.country_id
+          ORDER BY c.id, ci.id
+      `;
+      connection.query(sql, (err, results) => {
+          if (err) {
+              reject(err);
+              return;
+          }
+
+          const countries = [];
+          let currentCountry = null;
+
+          results.forEach(row => {
+              if (!currentCountry || currentCountry.id !== row.country_id) {
+                  currentCountry = {
+                      id: row.country_id,
+                      name: row.country_name,
+                      cities: []
+                  };
+                  countries.push(currentCountry);
+              }
+
+              if (row.city_id) {
+                  currentCountry.cities.push({
+                      id: row.city_id,
+                      name: row.city_name
+                  });
+              }
+          });
+
+          resolve(countries);
+      });
+  });
+}
+
+// Route to render the update country form
+app.get('/countries/:id/edit', async (req, res) => {
+  const countryId = req.params.id;
+
+  try {
+      const country = await getCountryById(countryId); // Fetch country by ID
+      if (!country) {
+          res.status(404).send('Country not found');
+          return;
+      }
+      res.render('editCountry', {title:'edit', country });
+  } catch (error) {
+      console.error('Error fetching country:', error);
+      res.status(500).send('Error fetching country');
+  }
+});
+
+// Route to update a country
+app.post('/countries/:id/edit', async (req, res) => {
+  const countryId = req.params.id;
+  const newName = req.body.newName;
+
+  try {
+      await updateCountry(countryId, newName); // Update country in the database
+      res.redirect('/countries'); // Redirect to the countries page after updating
+  } catch (error) {
+      console.error('Error updating country:', error);
+      res.status(500).send('Error updating country');
+  }
+});
+
+// Function to update a country in the database
+async function updateCountry(countryId, newName) {
+  return new Promise((resolve, reject) => {
+      const sql = 'UPDATE countries SET name = ? WHERE id = ?';
+      connection.query(sql, [newName, countryId], (err, result) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          resolve(); // Resolve the promise if update is successful
+      });
+  });
+}
+
+// Route to delete a country
+app.post('/countries/:id/delete', async (req, res) => {
+  const countryId = req.params.id;
+
+  try {
+      await deleteCountry(countryId); // Delete country from the database
+  } catch (error) {
+      console.error('Error deleting country:', error);
+      res.status(500).send('Error deleting country');
+  }
+});
+
+// Function to delete a country from the database
+async function deleteCountry(countryId) {
+  return new Promise((resolve, reject) => {
+      const sql = 'DELETE FROM countries WHERE id = ?';
+      connection.query(sql, [countryId], (err, result) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          resolve(); // Resolve the promise if deletion is successful
+      });
+  });
+}
+
+
+// Route to render the cities page
+app.get('/citylist', async (req, res) => {
+  try {
+      const cities = await getCitiesFromDatabase(); // Fetch cities from the database
+      res.render('cities', { title: 'List of Cities', cities }); // Render the cities.ejs template with the cities data
+  } catch (error) {
+      console.error('Error fetching cities:', error);
+      res.status(500).send('Error fetching cities');
+  }
+});
+
+
+// Function to fetch cities from the database
+async function getCitiesFromDatabase() {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT id, name FROM cities';
+      connection.query(sql, (err, results) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          resolve(results); // Resolve with the cities data
+      });
+  });
+}
+
+
+// Route to render the update city form
+app.get('/cities/:id/edit', async (req, res) => {
+  const cityId = req.params.id;
+
+  try {
+      const city = await getCityById(cityId); // Fetch city by ID
+      if (!city) {
+          res.status(404).send('City not found');
+          return;
+      }
+      res.render('editCity', {title:'edit', city });
+  } catch (error) {
+      console.error('Error fetching city:', error);
+      res.status(500).send('Error fetching city');
+  }
+});
+
+// Function to fetch a city by ID from the database
+async function getCityById(cityId) {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT id, name FROM cities WHERE id = ?';
+      connection.query(sql, [cityId], (err, result) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          if (result.length === 0) {
+              resolve(null); // Resolve with null if city is not found
+          } else {
+              resolve(result[0]); // Resolve with the city data
+          }
+      });
+  });
+}
+
+// Route to update a city
+app.post('/cities/:id/edit', async (req, res) => {
+  const cityId = req.params.id;
+  const newName = req.body.newName; // Assuming you have a form field for the new city name
+
+  try {
+      await updateCity(cityId, newName); // Update city in the database
+  } catch (error) {
+      console.error('Error updating city:', error);
+      res.status(500).send('Error updating city');
+  }
+  res.send('updated successfully')
+});
+
+// Function to update a city in the database
+async function updateCity(cityId, newName) {
+  return new Promise((resolve, reject) => {
+      const sql = 'UPDATE cities SET name = ? WHERE id = ?';
+      connection.query(sql, [newName, cityId], (err, result) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          resolve(); // Resolve the promise if update is successful
+      });
+  });
+}
+// Function to delete a city from the database
+async function deleteCity(cityId) {
+  return new Promise((resolve, reject) => {
+      const sql = 'DELETE FROM cities WHERE id = ?';
+      connection.query(sql, [cityId], (err, result) => {
+          if (err) {
+              reject(err); // Reject the promise if there's an error
+              return;
+          }
+          resolve(result); // Resolve with the result of the deletion operation
+      });
+  });
+}
+
+// Route to delete a city
+app.post('/cities/:id/delete', async (req, res) => {
+  const cityId = req.params.id;
+
+  try {
+      const result = await deleteCity(cityId); // Attempt to delete city from the database
+      if (result.affectedRows > 0) {
+          res.redirect('/cities'); // Redirect to the cities page after successful deletion
+      } else {
+          res.status(404).send('City not found'); // City with the provided ID not found
+      }
+  } catch (error) {
+      console.error('Error deleting city:', error);
+      res.status(500).send('Error deleting city');
+  }
+  res.send('deleted successfully')
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
