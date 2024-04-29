@@ -1,13 +1,14 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
-
+const multer = require('multer');
+const routes = require('./routes');
+const connection = require('./db');
 const path = require('path');
 const app = express();
 const PORT = 3000;
@@ -31,20 +32,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Mylove4exo*',
-    database: 'payroll'
-});
 
-connection.connect(err => {
-    if (err) {
-        console.error('Error connecting to database:', err);
-        return;
-    }
-    console.log('Connected to MySQL database!');
-});
+
+
+// Use your routes
+app.use('/api', routes);
+
 
 
 // Function to retrieve user by username from the database
@@ -873,6 +866,111 @@ app.post('/cities/:id/delete', async (req, res) => {
   }
   res.send('deleted successfully')
 });
+
+
+
+// Route to render the company profile form
+app.get('/addCompany', async (req, res) => {
+  try {
+      const countries = await getCountries();
+      const cities = await getCities();
+
+      res.render('company_profile', { title: 'add', countries, cities });
+  } catch (error) {
+      console.error('Error:', error); // Log the error
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+
+// Helper function to fetch countries from the database
+async function getCountries() {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT * FROM countries';
+      connection.query(sql, (err, result) => {
+          if (err) reject(err);
+          resolve(result);
+      });
+  });
+}
+
+// Helper function to fetch cities from the database
+async function getCities() {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT * FROM cities';
+      connection.query(sql, (err, result) => {
+          if (err) reject(err);
+          resolve(result);
+      });
+  });
+}
+
+// Route to display all company profiles
+app.get('/company-profiles', async (req, res) => {
+  try {
+      const companyProfiles = await getAllCompanyProfiles();
+
+      // Render the company profiles view with the company profiles data
+      res.render('companies', {title:'company profile', companyProfiles });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+// Helper function to fetch all company profiles from the database
+async function getAllCompanyProfiles() {
+  return new Promise((resolve, reject) => {
+      const sql = 'SELECT * FROM company_profile';
+      connection.query(sql, (err, result) => {
+          if (err) reject(err);
+          resolve(result);
+      });
+  });
+}
+// Route to display company details by ID
+app.get('/company-profile/:id', async (req, res) => {
+  const companyId = req.params.id;
+  try {
+      const company = await getCompanyDetails(companyId);
+      if (!company) {
+          return res.status(404).send('Company not found');
+      }
+      res.render('company_detail', {title:'company', company });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+// Helper function to execute SQL queries with promises
+function query(sql, args) {
+  return new Promise((resolve, reject) => {
+      connection.query(sql, args, (err, rows) => {
+          if (err) return reject(err);
+          resolve(rows);
+      });
+  });
+}
+
+async function getCompanyDetails(companyId) {
+  try {
+      // Query to fetch company details from your database table
+      const sql = 'SELECT * FROM company_profile WHERE id = ?';
+      const rows = await query(sql, [companyId]);
+      
+      // Check if company with given ID exists
+      if (rows.length > 0) {
+          return rows[0]; // Return the first (and only) row
+      } else {
+          return null; // Company not found
+      }
+  } catch (error) {
+      console.error('Error fetching company details:', error);
+      throw error; // Forward the error to the caller
+  }
+}
+
 
 
 app.listen(PORT, () => {

@@ -53,7 +53,7 @@
             </button>
             <!-- Dropdown Content 1 -->
             <div id="dropdown1" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
-                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Company Profile</a>
+                <a href="/company-profiles" class="block px-4 py-2 text-sm hover:bg-gray-600">Company Profile</a>
                 <a href="/locations" class="block px-4 py-2 text-sm hover:bg-gray-600">Locations</a>
                 <a href="/citylist" class="block px-4 py-2 text-sm hover:bg-gray-600">cities</a>
                 <a href="/employeeStatus" class="block px-4 py-2 text-sm hover:bg-gray-600">Employee status</a>
@@ -160,25 +160,25 @@ function handleSearch() {
     const searchQuery = document.getElementById('searchInput').value.toLowerCase();
     const menuItems = document.querySelectorAll('#sidebar nav a');
 
-    let found = false; // Flag to track if a match is found
+    let found = false;
 
     menuItems.forEach(item => {
         const itemText = item.textContent.toLowerCase();
         if (itemText.includes(searchQuery)) {
             found = true;
-            item.classList.add('highlight'); // Apply highlight style
+            item.classList.add('highlight');
             const parentDropdown = item.closest('.group');
             if (parentDropdown) {
                 parentDropdown.classList.add('group-hover:block');
                 parentDropdown.classList.remove('hidden');
                 const dropdownButton = parentDropdown.querySelector('button');
                 if (dropdownButton) {
-                    dropdownButton.click(); // Simulate click event to open the dropdown
+                    dropdownButton.click();
                 }
-                item.scrollIntoView({ behavior: 'smooth' }); // Scroll to the matched item
+                item.scrollIntoView({ behavior: 'smooth' });
             }
         } else {
-            item.classList.remove('highlight'); // Remove highlight style if not matched
+            item.classList.remove('highlight');
         }
     });
 
