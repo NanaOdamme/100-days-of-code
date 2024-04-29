@@ -1,3 +1,20 @@
+<style>
+    /* Add this CSS to your existing styles or a separate stylesheet */
+
+    /* Highlight style */
+    .highlight {
+        background-color: #625c7a; /* Light gray background */
+        color: #ffffff; /* Dark text color */
+        font-weight: bold; /* Bold text */
+        border-left: 2px solid #fbff00; /* Left border color */
+        padding: 8px; /* Padding left for the text */
+    }
+
+    /* Hover effect for highlighted items */
+    .highlight:hover {
+        background-color: #e0e0e0; /* Darker background on hover */
+    }
+</style>
 
 <aside class="w-64 bg-gray-800 text-white h-full fixed top-0 left-0 flex flex-col overflow-y-auto pt-10" id="sidebar">
     <div class="p-4">
@@ -17,10 +34,10 @@
 
       <div class="mx-2 mt-8 mb-8">
         <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" class="absolute h-6 w-6 mt-2.5 ml-2 text-gray-400">
-          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
         </svg>
-        <input type="text" role="search" placeholder="Quick Search" class="py-2 pl-10 w-full pr-4 text-black border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg" />
-      </div>
+        <input type="text" role="search" id="searchInput" placeholder="Quick Search" class="py-2 pl-10 w-full pr-4 text-black border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg" />
+    </div>
 
     <nav class="space-y-6"> 
         <div class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
@@ -103,7 +120,7 @@
         </div>
 
         <!-- Dropdown 2 -->
-        <div class="group">
+        <div class="group ">
             <button class="w-full py-2 px-4 flex items-center justify-between text-left hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out" onclick="toggleDropdown('dropdown6')">
                 Settings
                 <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
@@ -111,7 +128,7 @@
                 </svg>
             </button>
             <!-- Dropdown Content 2 -->
-            <div id="dropdown6" class="group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
+            <div id="dropdown6" class="drop group-hover:block hidden bg-gray-700 p-2 space-y-1 transition duration-150 ease-in-out">
                 <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">General Settings</a>
                 <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Company Setting</a>
                 <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-600">Payroll Settings</a>
@@ -137,6 +154,45 @@
             dropdown.scrollIntoView({ behavior: 'smooth' });
         }
     }
+
+// Function to handle search functionality
+function handleSearch() {
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    const menuItems = document.querySelectorAll('#sidebar nav a');
+
+    let found = false; // Flag to track if a match is found
+
+    menuItems.forEach(item => {
+        const itemText = item.textContent.toLowerCase();
+        if (itemText.includes(searchQuery)) {
+            found = true;
+            item.classList.add('highlight'); // Apply highlight style
+            const parentDropdown = item.closest('.group');
+            if (parentDropdown) {
+                parentDropdown.classList.add('group-hover:block');
+                parentDropdown.classList.remove('hidden');
+                const dropdownButton = parentDropdown.querySelector('button');
+                if (dropdownButton) {
+                    dropdownButton.click(); // Simulate click event to open the dropdown
+                }
+                item.scrollIntoView({ behavior: 'smooth' }); // Scroll to the matched item
+            }
+        } else {
+            item.classList.remove('highlight'); // Remove highlight style if not matched
+        }
+    });
+
+    // If no match found, clear previous highlights and close dropdowns
+    if (!found) {
+        menuItems.forEach(item => item.classList.remove('highlight'));
+        const dropdowns = document.querySelectorAll('.group');
+        dropdowns.forEach(dropdown => dropdown.classList.remove('group-hover:block'));
+    }
+}
+
+// Attach event listener to the search input
+document.getElementById('searchInput').addEventListener('input', handleSearch);
+
 </script>
 
 

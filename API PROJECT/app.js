@@ -71,7 +71,7 @@ function getUserById(id, callback) {
       }
     });
   }
-  // Example usage:
+  //usage:
   passport.use(new LocalStrategy(
     (username, password, done) => {
       getUserByUsername(username, (err, user) => {
@@ -233,7 +233,7 @@ app.post('/users/delete/:id', (req, res) => {
   
 
   // Route to fetch users from database and render users.ejs
-  app.get('/users', isAdmin, (req, res) => {
+  app.get('/users', (req, res) => {
     const sqlAdmins = 'SELECT * FROM admins';
     const sqlUsers = 'SELECT * FROM users';
     connection.query(sqlAdmins, (errAdmins, admins) => {
@@ -252,7 +252,7 @@ app.post('/users/delete/:id', (req, res) => {
   });
   
   
-  app.get('/add-user', isAdmin, (req, res) => {
+  app.get('/add-user',(req, res) => {
     res.render('addUser', { title:'adduser' });
   });
   
