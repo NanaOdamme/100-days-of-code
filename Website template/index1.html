@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nabbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+<style>
+    
+   /* Optional: Custom styles can be added here */
+        /* Adjust the width of the scroller */
+        .image-scroller {
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        /* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+        .image-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Adjust the size and spacing of each image container */
+        .image-scroller .image-container {
+            position: relative;
+            display: inline-block;
+            max-width: 200px;
+            margin-right: 10px; /* Adjust spacing between images */
+        }
+
+        /* Styling for the hover effect */
+        .image-scroller .image-container:hover .hover-text {
+            display: block;
+        }
+
+        /* Styling for the hover text */
+        .hover-text {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        /* Adjust the size and spacing of each image */
+        .image-scroller img {
+            max-width: 200px;
+            max-height: 250px;
+            margin-right: 10px; 
+            object-fit: cover;
+            object-position: center;
+            border-radius: 10px;}
+            
+    .swiper {
+        width: 100%;
+        height: 100%;
+      }
+  
+      .swiper-slide {
+        color: #fff;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+      }
+  
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .contain{
+        width: 100%;
+        min-height: 600px;
+        position: relative;
+        display: flex;
+        align-items: left;
+        background: rgb(2, 3, 7, 0.4);
+
+      }
+      .contain img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: -1;
+      }
+      .swiper-pagination-bullet{
+        width: 50px !important;
+        height: 6px !important;
+        border-radius: 0.2rem !important;
+        background: #00d9ff6c !important;
+      }
+      .swiper-pagination-bullet-active{
+        width: 6rem !important;
+       background: bisque !important;
+      }
+      .hometext{
+        z-index: 1000;
+        padding: 0 50px;
+        
+      }
+      .hometext span{
+        text-transform: uppercase;
+      }
+    
+      .hometext p{
+        font-size: 12px;
+      }
+
+      .card {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+    /* Adjust the icon size and position */
+    .card i {
+        border: 2px solid #00ffee;
+        font-size: 24px;
+        padding: 5px 9px;
+        border-radius: 100px;
+        color: rgb(0, 234, 255);
+    }
+
+    /* Styling for the card content */
+    .card .content {
+        padding: 15px;
+    }
+    .card h1{
+        font-size: 16px;
+    }
+    .card p{
+     font-size: 14px;
+    }
+    .card .bi-arrow-down-right-circle-fill{
+        color: #c8ff00;
+        border: none;
+        float: right;
+    }
+</style>
+<body class="bg-black">
+ <!-- Navbar Header -->
+<nav class="bg-white shadow-lg flex justify-between items-center px-4 py-2">
+
+    <!-- Menu Bar -->
+    <div class="flex items-center">
+      <!-- Replace "your-menu-icon" with your actual menu icon -->
+      <button class="text-gray-800 focus:outline-none" id="menuBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+  
+    <!-- Logo -->
+    <div class="flex items-center justify-center">
+      <span class="text-xl font-bold text-gray-800">DOTA ARTS</span>
+    </div>
+  
+    <!-- Search Bar -->
+    <div class="flex items-center">
+      <!-- Replace "your-search-icon" with your actual search icon -->
+      <button class="text-gray-800 focus:outline-none mx-10" id="searchBtn">
+        <i class="bi bi-search text-2xl font-bold"></i>
+      </button>
+      <button class="hover:text-orange-400 transition duration-300 text-red-500  px-6    font-bold">
+        <a href="">Sign in</a>
+      </button>
+      
+    </div>
+    
+  
+  </nav>
+  <!-- Search Bar -->
+<div id="searchBar" class="hidden bg-white shadow-lg p-4 fixed top-16 left-0 right-0 z-50">
+    <input type="text" placeholder="Search..." class="px-4 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+  </div>
+  
+  <!-- Sidebar Dropdown -->
+  <div id="sidebar" class="hidden bg-white shadow-lg h-screen w-64 fixed top-0 left-0 z-50">
+    <!-- Close Button -->
+    <button class="absolute top-2 right-2 text-gray-600 focus:outline-none" id="closeBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <ul class="py-4 pt-10">
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Home</a></li>
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Genre</a></li>
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Communities</a></li>
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Updates</a></li>
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Settings</a></li>
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Movie Adaptation</a></li>
+        <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Login</a></li>
+      </ul>
+  </div>
+
+
+  <section class="home" id="home">
+    <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide contain">
+        <img src="image.png" alt="1">
+        <div class="hometext"><span class="font-bold mx-4 text-2xl ">
+            Art 1</span>
+             
+              <div class="flex mt-10">
+              <a href="#" class="mx-4 bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4 shadow-md">
+                Buy
+              </a>
+              
+              <a href="#" class="btn bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4  shadow-md">Add to list  <i class="bi bi-plus-circle"></i></a>
+            </div>
+            <p class="mx-4">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit.<br> Veritatis, quae!</p>
+            </div>
+      </div>
+      <div class="swiper-slide contain">
+        <img src="image (2).jpeg" alt="1">
+        <div class="hometext"><span class="font-bold mx-4 text-2xl ">
+           Art 2</span>
+             
+              <div class="flex mt-10">
+              <a href="#" class="mx-4 bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4 shadow-md">
+                Buy
+              </a>
+              
+              <a href="#" class="btn bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4  shadow-md">Add to list  <i class="bi bi-plus-circle"></i></a>
+            </div>
+            <p class="mx-4">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit.<br> Veritatis, quae!</p>
+            </div>
+      </div>
+      <div class="swiper-slide contain">
+        <img src="image (3).jpeg" alt="1">
+        <div class="hometext"><span class="font-bold mx-4 text-2xl ">
+            Art 3</span>
+             
+              <div class="flex mt-10">
+              <a href="#" class="mx-4 bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4 shadow-md">
+                Buy
+              </a>
+              
+              <a href="#" class="btn bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4  shadow-md">Add to list  <i class="bi bi-plus-circle"></i></a>
+            </div>
+            <p class="mx-4">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit.<br> Veritatis, quae!</p>
+            </div>
+      </div>
+      <div class="swiper-slide contain">
+        <img src="image (4).jpeg" alt="1">
+        <div class="hometext"><span>
+            Art 4</span>
+              <h1> Lorem ipsum dolor sit amet.</h1>
+              <a href="#" class="btn">Buy</a>
+              <a href="#"><i class="bi bi-plus-circle"></i></a>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="swiper-pagination"></div>
+  </div>
+
+  </section>
+  
+  <section class="p-2 m-6 next mt-6 pb-6">
+
+        <h1 class="mx-4 text-white text-2xl">Popular on DOTA</h1>
+        <div class=" flex image-scroller  p-4 rounded-lg shadow-lg">
+            <!-- Placeholder images -->
+            <div class="image-container">
+            <img src="image.png" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (5).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+
+        <div class="image-container">
+            <img src="image (2).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (1).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (6).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (7).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (8).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (9).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (10).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (11).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        <div class="image-container">
+            <img src="image (12).jpeg" alt="1">
+            <div class="hover-text">Title</div>
+        </div>
+        
+        </div>
+  </section>
+
+  <section class="p-2 m-6 next mt-6 pb-6 my-cards">
+  
+    <h1 class="mx-4 text-white text-2xl">Create and Sell Your Art</h1>
+    <div class="inner px-20">
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            <!-- First card -->
+            <div class="card bg-black bg-opacity-20 rounded pt-5 border border-white relative text-white">
+                <i class="bi bi-book-half text-white mx-5"></i>
+                <div class="content">
+                    <h1 class="font-bold mb-2">Set Up your Account</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <i class="bi bi-arrow-down-right-circle-fill"></i>
+            </div>
+            <!-- Repeat the card structure for other cards -->
+            <!-- Second card -->
+            <div class="card bg-black bg-opacity-20 rounded pt-5 border border-white relative text-white">
+                <i class="bi bi-book-half text-white mx-5"></i>
+                <div class="content">
+                    <h1 class="font-bold mb-2">Create Your Collection</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <i class="bi bi-arrow-down-right-circle-fill"></i>
+            </div>
+            <!-- Third card -->
+            <div class="card bg-black bg-opacity-20 rounded pt-5 border border-white relative text-white">
+                <i class="bi bi-book-half text-white mx-5"></i>
+                <div class="content">
+                    <h1 class="font-bold mb-2">Add Your Art</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <i class="bi bi-arrow-down-right-circle-fill"></i>
+            </div>
+            <!-- Fourth card -->
+            <div class="card bg-black bg-opacity-20 rounded pt-5 border border-white relative text-white">
+                <i class="bi bi-book-half text-white mx-5"></i>
+                <div class="content">
+                    <h1 class="font-bold mb-2">List them for sale</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <i class="bi bi-arrow-down-right-circle-fill"></i>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
+    </div>
+
+
+</section>
+
+<section>
+    <div class="creators">
+        <h1 class="mx-4 text-white text-2xl">Best Creators</h1>
+    </div>
+</section>
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+  // JavaScript for sidebar dropdown
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('closeBtn');
+
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('hidden');
+});
+
+closeBtn.addEventListener('click', () => {
+  sidebar.classList.add('hidden');
+});
+// JavaScript for search bar toggle
+const searchBtn = document.getElementById('searchBtn');
+const searchBar = document.getElementById('searchBar');
+
+searchBtn.addEventListener('click', () => {
+  searchBar.classList.toggle('hidden');
+});
+
+var swiper = new Swiper(".mySwiper", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  </script>
+</body>
+</html>
