@@ -10,14 +10,19 @@
 
 </head>
 <style>
-    
-   /* Optional: Custom styles can be added here */
-        /* Adjust the width of the scroller */
+      
+        .scrollers .h1{
+        position: relative;
+        margin-top: -300px;
+        z-index: 1000;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 600;
+        }
         .image-scroller {
             max-width: 100%;
             overflow-x: auto;
             white-space: nowrap;
-            /* Hide scrollbar */
+           
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none; /* Internet Explorer 10+ */
         }
@@ -42,8 +47,7 @@
 
         /* Styling for the hover text */
         .hover-text {
-            display: none;
-            position: absolute;
+            display: none; 
             bottom: 0;
             left: 0;
             right: 0;
@@ -61,11 +65,20 @@
             margin-right: 10px; 
             object-fit: cover;
             object-position: center;
-            border-radius: 10px;}
-            
+            border-radius: 10px;
+            border: 2px solid #fff;
+          }
+    .home{
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      transform: scaleX(-1);
+      
+    }        
     .swiper {
         width: 100%;
-        height: 100%;
+        height: 110vh;
+        
       }
   
       .swiper-slide {
@@ -74,6 +87,10 @@
         background: #fff;
         display: flex;
         align-items: center;
+        background-size: cover;
+        background-position: center;
+        
+        
       }
   
       .swiper-slide img {
@@ -81,6 +98,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
+        
+      
       }
       .contain{
         width: 100%;
@@ -103,15 +123,18 @@
         width: 50px !important;
         height: 6px !important;
         border-radius: 0.2rem !important;
-        background: #00d9ff6c !important;
+        background: #0f17196c !important;
       }
       .swiper-pagination-bullet-active{
         width: 6rem !important;
-       background: bisque !important;
+       background: rgb(24, 22, 20) !important;
       }
       .hometext{
         z-index: 1000;
-        padding: 0 50px;
+        padding: 15em 1em;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) , rgb(0, 0, 0));
+        transform: scaleX(-1);
+        position: absolute; left: 0;top: 0; width: 100%; height: 100%;
         
       }
       .hometext span{
@@ -126,8 +149,14 @@
         max-width: 100%;
         height: auto;
         width: auto;
+        transition: .5s;
+        
     }
-
+     .card:hover{
+        background-color: #ffffffcc;
+        transform: scale(1.1);
+        color: #000000;
+     }
     /* Adjust the icon size and position */
     .card i {
         border: 2px solid #00ffee;
@@ -137,7 +166,7 @@
         color: rgb(0, 234, 255);
     }
 
-    /* Styling for the card content */
+ 
     .card .content {
         padding: 15px;
     }
@@ -148,12 +177,19 @@
      font-size: 14px;
     }
     .card .bi-arrow-down-right-circle-fill{
-        color: #c8ff00;
+        color: #0091ff;
         border: none;
         float: right;
+        cursor: pointer;
+        transition: .4s;
+    }
+    .card .bi-arrow-down-right-circle-fill:hover{
+      transform: scale(1.2);
+      color: #00eeff;
     }
 </style>
 <body class="bg-black">
+  <header>
  <!-- Navbar Header -->
 <nav class="bg-white shadow-lg flex justify-between items-center px-4 py-2">
 
@@ -209,7 +245,7 @@
         <li class="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="#">Login</a></li>
       </ul>
   </div>
-
+</header>
 
   <section class="home" id="home">
     <div class="swiper mySwiper">
@@ -245,7 +281,7 @@
             </div>
       </div>
       <div class="swiper-slide contain">
-        <img src="image (3).jpeg" alt="1">
+        <img src="image (5).jpeg" alt="1">
         <div class="hometext"><span class="font-bold mx-4 text-2xl ">
             Art 3</span>
              
@@ -260,12 +296,17 @@
             </div>
       </div>
       <div class="swiper-slide contain">
-        <img src="image (4).jpeg" alt="1">
+        <img src="image (1).jpeg" alt="1">
         <div class="hometext"><span>
             Art 4</span>
-              <h1> Lorem ipsum dolor sit amet.</h1>
-              <a href="#" class="btn">Buy</a>
-              <a href="#"><i class="bi bi-plus-circle"></i></a>
+            <div class="flex mt-10">
+              <a href="#" class="mx-4 bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4 shadow-md">
+                Buy
+              </a>
+              
+              <a href="#" class="btn bg-pink-100 bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4  shadow-md">Add to list  <i class="bi bi-plus-circle"></i></a>
+            </div>
+            <p class="mx-4">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit.<br> Veritatis, quae!</p>
         </div>
       </div>
       
@@ -276,11 +317,11 @@
 
   </section>
   
-  <section class="p-2 m-6 next mt-6 pb-6">
-
-        <h1 class="mx-4 text-white text-2xl">Popular on DOTA</h1>
-        <div class=" flex image-scroller  p-4 rounded-lg shadow-lg">
-            <!-- Placeholder images -->
+  <section class="scrollers  ">
+<div class="h1">
+    <h1 class="mx-4 text-white text-2xl">Popular on DOTA</h1>
+  </div>   
+    <div class=" flex image-scroller  p-4 rounded-lg shadow-lg">
             <div class="image-container">
             <img src="image.png" alt="1">
             <div class="hover-text">Title</div>
